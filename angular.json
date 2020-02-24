@@ -25,10 +25,12 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.css"
+              }
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -122,6 +124,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "rpa-automation-tool"
 }
