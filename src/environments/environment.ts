@@ -4,19 +4,19 @@
 
 export const environment = {
   production: false,
-  apiUrl: '',
-  applicationTypeAPIUrl: '',
-  attachmentTypeAPIUrl: '',
-  businessDomainAPIUrl: '',
-  customerAPIUrl: '',
-  fiscalYearAPIUrl: '',
-  productivityAnalystAPIUrl: '',
-  RPATypeAPIUrl: '',
-  TargetSystemAPIUrl: '',
-  TechnologyAPIUrl: '',
-  TransactionTypeAPIUrl: '',
-  TransactionTypeValueAPIUrl: '',
-  projectAPIUrl: ''
+  apiUrl: 'https://localhost:44367/api/',
+  applicationTypeAPIUrl: 'ApplicationTypes',
+  attachmentTypeAPIUrl: 'AttachmentsType',
+  businessDomainAPIUrl: 'BusinessDomains',
+  customerAPIUrl: 'Customers',
+  fiscalYearAPIUrl: 'FiscalYears',
+  productivityAnalystAPIUrl: 'ProductivityAnalysts',
+  RPATypeAPIUrl: 'RpaTypes',
+  TargetSystemAPIUrl: 'TargetSystems',
+  TechnologyAPIUrl: 'Technologies',
+  TransactionTypeAPIUrl: 'TransactionTypes',
+  TransactionTypeValueAPIUrl: 'TransactionTypeValues',
+  projectAPIUrl: 'Projects'
 };
 
 /*
