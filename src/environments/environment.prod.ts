@@ -1,4 +1,16 @@
 export const environment = {
   production: true,
-  apiUrl: ''
+  apiUrl: '',
+  applicationTypeAPIUrl: '',
+  attachmentTypeAPIUrl: '',
+  businessDomainAPIUrl: '',
+  customerAPIUrl: '',
+  fiscalYearAPIUrl: '',
+  productivityAnalystAPIUrl: '',
+  RPATypeAPIUrl: '',
+  TargetSystemAPIUrl: '',
+  TechnologyAPIUrl: '',
+  TransactionTypeAPIUrl: '',
+  TransactionTypeValueAPIUrl: '',
+  projectAPIUrl: ''
 };

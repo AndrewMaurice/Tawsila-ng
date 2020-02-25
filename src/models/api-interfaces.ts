@@ -69,7 +69,7 @@ export interface ITargetSystem {
 
 export interface ITransactionType {
   transactionTypeID: number;
-  TransactionTypeName: string;
+  transactionTypeName: string;
 }
 
 export interface ITransactionTypeValue {

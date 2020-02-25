@@ -1,0 +1,65 @@
+<div id="addNewItemContainer">
+  <form [formGroup]="addNewFiscalYearFormGroup" (ngSubmit)="add()">
+    <div class="form-group">
+      <label>FiscalYear Name</label>
+      <input class="form-control" [formControl]="fiscalYearName">
+      <div class="alert alert-danger" *ngIf="fiscalYearName.touched && fiscalYearName.invalid">
+        <div *ngIf="fiscalYearName.errors.required">The Fiscalyear name is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Start Date</label>
+      <input class="form-control" [formControl]="startDate" type="date" />
+      <div class="alert alert-danger" *ngIf="startDate.touched && startDate.invalid">
+        <div *ngIf="startDate.errors.required">The start date is required.</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add</button>
+  </form>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Fiscal Name</th>
+      <td mat-cell *matCellDef="let element">
+        <input class="form-control" #fiscalYearName
+          (change)="update(element.fiscalYearID, fiscalYearName.value, element.startDate)">
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="StartDate">
+      <th mat-header-cell *matHeaderCellDef>Value</th>
+      <td mat-cell *matCellDef="let element">
+        <input type="date" class="form-control" [value]="element.startDate | date : 'MMM/yyyy'" #startDate
+          (change)="update(element.fiscalYearID, element.fiscalYearName, startDate.value)">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EndDate">
+      <th mat-header-cell *matHeaderCellDef>Value</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.endDate | date: 'MMM/yyyy'}}
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-danger" (click)="delete(element.fiscalYearID)">Delete</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,0 +1,77 @@
+
+<div id="addNewItemContainer">
+  <form [formGroup]="addNewTransactionTypeFormGroup" (ngSubmit)="add()">
+    <div class="form-group">
+      <label>Transaction Name</label>
+      <input
+      class="form-control"
+      [formControl]="transactionTypeName">
+      <div class="alert alert-danger" *ngIf="transactionType.touched && transactionType.invalid">
+        <div *ngIf="transactionType.errors.required">The Transaction Type is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Value</label>
+      <input
+      class="form-control"
+      [formControl]="value">
+      <div class="alert alert-danger" *ngIf="value.touched && value.invalid">
+        <div *ngIf="value.errors.required">The Value is required</div>
+        <div *ngIf="value.errors.pattern">The value must be numeric value</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add</button>
+
+  </form>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Transaction</th>
+      <td mat-cell *matCellDef="let element">
+        <select
+        class="form-control"
+        [value]="element.transactionType.transactionTypeName"
+        #transactionTypeName
+        (change)="update(element.transactionTypeValueID, element.value, transactionTypeName.value)">
+          <option
+          *ngFor="let item of transactionTypes"
+          [value]="item.transactionTypeID">
+          {{item.transactionTypeName}}
+        </option>
+        </select>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Value">
+      <th mat-header-cell *matHeaderCellDef>Value</th>
+      <td mat-cell *matCellDef="let element">
+        <input
+          class="form-control"
+          [value]="element.value"
+          #value
+         (change)="update(element.transactionTypeValueID, value.value, element.transactionTypeID)">
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef> Delete </th>
+      <td mat-cell *matCellDef="let element">
+        <button class="btn btn-danger" (click)="delete(element.transactionTypeValueID)">Delete</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

@@ -4,7 +4,19 @@
 
 export const environment = {
   production: false,
-  apiUrl: ''
+  apiUrl: '',
+  applicationTypeAPIUrl: '',
+  attachmentTypeAPIUrl: '',
+  businessDomainAPIUrl: '',
+  customerAPIUrl: '',
+  fiscalYearAPIUrl: '',
+  productivityAnalystAPIUrl: '',
+  RPATypeAPIUrl: '',
+  TargetSystemAPIUrl: '',
+  TechnologyAPIUrl: '',
+  TransactionTypeAPIUrl: '',
+  TransactionTypeValueAPIUrl: '',
+  projectAPIUrl: ''
 };
 
 /*
