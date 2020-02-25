@@ -43,6 +43,12 @@ export class TargetSystemDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+            .getAllData()
+            .then((result: ITargetSystem[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -53,17 +59,17 @@ export class TargetSystemDatatableComponent implements OnInit {
   }
 
   // tslint:disable-next-line: variable-name
-  update(id: number, targetSystemName: string) {
+  update(id: number, tagetSystemName: string) {
 
-    if (this.isValidInput(targetSystemName)) {
+    if (!this.isValidInput(tagetSystemName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: ITargetSystem = {
-        targetSystemID: id,
-        targetSystemName
+        targetSystemId: id,
+        tagetSystemName
       };
       this.apiDataService
         .putItem(id, updatedAppType)
@@ -92,16 +98,16 @@ export class TargetSystemDatatableComponent implements OnInit {
 
   add() {
     // tslint:disable-next-line: variable-name
-    const targetSystemName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(targetSystemName)) {
+    const tagetSystemName = this.addNewItem.nativeElement.value;
+    if (!this.isValidInput(tagetSystemName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: ITargetSystem = {
-        targetSystemID: 0,
-        targetSystemName
+        targetSystemId: 0,
+        tagetSystemName
       };
 
       this.apiDataService

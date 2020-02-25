@@ -42,6 +42,12 @@ export class TransactionTypeDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+            .getAllData()
+            .then((result: ITransactionType[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -53,14 +59,14 @@ export class TransactionTypeDatatableComponent implements OnInit {
 
   update(id: number, transactionTypeName: string) {
 
-    if (this.isValidInput(transactionTypeName)) {
+    if (!this.isValidInput(transactionTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: ITransactionType = {
-        transactionTypeID: id,
+        transactionTypeId: id,
         transactionTypeName
       };
       this.apiDataService
@@ -90,14 +96,14 @@ export class TransactionTypeDatatableComponent implements OnInit {
 
   add() {
     const transactionTypeName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(transactionTypeName)) {
+    if (!this.isValidInput(transactionTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: ITransactionType = {
-        transactionTypeID: 0,
+        transactionTypeId: 0,
         transactionTypeName
       };
 

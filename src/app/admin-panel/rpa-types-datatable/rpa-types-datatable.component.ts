@@ -42,6 +42,12 @@ export class RpaTypesDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+            .getAllData()
+            .then((result: IRPAType[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -52,17 +58,17 @@ export class RpaTypesDatatableComponent implements OnInit {
   }
 
   // tslint:disable-next-line: variable-name
-  update(id: number, RPA_TypeName: string) {
+  update(id: number, rpaTypeName: string) {
 
-    if (this.isValidInput(RPA_TypeName)) {
+    if (!this.isValidInput(rpaTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: IRPAType = {
-        RPA_TypeID: id,
-        RPA_TypeName
+        rpaTypeId: id,
+        rpaTypeName
       };
       this.apiDataService
         .putItem(id, updatedAppType)
@@ -91,16 +97,16 @@ export class RpaTypesDatatableComponent implements OnInit {
 
   add() {
     // tslint:disable-next-line: variable-name
-    const RPA_TypeName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(RPA_TypeName)) {
+    const rpaTypeName = this.addNewItem.nativeElement.value;
+    if (!this.isValidInput(rpaTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: IRPAType = {
-        RPA_TypeID: 0,
-        RPA_TypeName
+        rpaTypeId: 0,
+        rpaTypeName
       };
 
       this.apiDataService

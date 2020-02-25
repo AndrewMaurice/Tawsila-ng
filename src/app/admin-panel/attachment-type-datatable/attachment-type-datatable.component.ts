@@ -43,6 +43,14 @@ export class AttachmentTypeDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+
+          // refresh the list.
+        this.attachmentTypesService
+            .getAllData()
+            .then((result: IAttachmentType[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -54,14 +62,14 @@ export class AttachmentTypeDatatableComponent implements OnInit {
 
   update(id: number, attachmentTypeName: string) {
 
-    if (this.isValidInput(attachmentTypeName)) {
+    if (!this.isValidInput(attachmentTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: IAttachmentType = {
-        attachmentID: id,
+        attachmentId: id,
         attachmentTypeName
       };
       this.attachmentTypesService
@@ -91,14 +99,14 @@ export class AttachmentTypeDatatableComponent implements OnInit {
 
   add() {
     const attachmentTypeName = this.addNewAttachmentTypeName.nativeElement.value;
-    if (this.isValidInput(attachmentTypeName)) {
+    if (!this.isValidInput(attachmentTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: IAttachmentType = {
-        attachmentID: 0,
+        attachmentId: 0,
         attachmentTypeName
       };
 

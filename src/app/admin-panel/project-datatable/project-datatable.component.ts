@@ -43,6 +43,12 @@ export class ProjectDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+            .getAllData()
+            .then((result: IProject[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -54,14 +60,14 @@ export class ProjectDatatableComponent implements OnInit {
 
   update(id: number, projectName: string) {
 
-    if (this.isValidInput(projectName)) {
+    if (!this.isValidInput(projectName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: IProject = {
-        projectID: id,
+        projectId: id,
         projectName
       };
       this.apiDataService
@@ -91,14 +97,14 @@ export class ProjectDatatableComponent implements OnInit {
 
   add() {
     const projectName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(projectName)) {
+    if (!this.isValidInput(projectName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: IProject = {
-        projectID: 0,
+        projectId: 0,
         projectName
       };
 

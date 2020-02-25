@@ -15,21 +15,21 @@
 
     <!-- ApplicationTypeName Column -->
     <ng-container matColumnDef="ApplicationType">
-      <th mat-header-cell *matHeaderCellDef> Application Type</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Application Type</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
         <input
           class="form-control"
-          [value]="element.ApplicationTypeName"
+          [value]="element.applicationTypeName"
           #applicationTypeName
-         (change)="update(element.applicationTypeID, applicationTypeName.value)">
+         (change)="update(element.applicationTypeId, applicationTypeName.value)">
       </td>
     </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef> Delete </th>
-      <td mat-cell *matCellDef="let element">
-        <button class="btn btn-danger" (click)="delete(element.applicationTypeID)">Delete</button>
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button class="btn btn-danger" (click)="delete(element.applicationTypeId)">Delete</button>
       </td>
     </ng-container>
 

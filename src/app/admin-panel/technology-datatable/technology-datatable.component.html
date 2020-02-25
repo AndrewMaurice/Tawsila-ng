@@ -15,21 +15,21 @@
 
     <!-- AttachmentTypeName Column -->
     <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef>Technology</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="text-center">Technology</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
         <input
           class="form-control"
           [value]="element.technologyName"
           #technologyName
-         (change)="update(element.technologyID, technologyName.value)">
+         (change)="update(element.technologyId, technologyName.value)">
       </td>
     </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef> Delete </th>
-      <td mat-cell *matCellDef="let element">
-        <button class="btn btn-danger" (click)="delete(element.technologyID)">Delete</button>
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button class="btn btn-danger" (click)="delete(element.technologyId)">Delete</button>
       </td>
     </ng-container>
 

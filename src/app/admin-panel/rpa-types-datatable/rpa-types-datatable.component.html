@@ -15,21 +15,21 @@
 
     <!-- AttachmentTypeName Column -->
     <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef> RPA Type Name </th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> RPA Type Name </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
         <input
           class="form-control"
-          [value]="element.RPA_TypeName"
-          #RPA_TypeName
-         (change)="update(element.RPA_TypeID, RPA_TypeName.value)">
+          [value]="element.rpaTypeName"
+          #rpaTypeName
+         (change)="update(element.rpaTypeId, rpaTypeName.value)">
       </td>
     </ng-container>
 
     <!-- Action Column -->
     <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef> Delete </th>
-      <td mat-cell *matCellDef="let element">
-        <button class="btn btn-danger" (click)="delete(element.RPA_TypeID)">Delete</button>
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button class="btn btn-danger" (click)="delete(element.rpaTypeId)">Delete</button>
       </td>
     </ng-container>
 

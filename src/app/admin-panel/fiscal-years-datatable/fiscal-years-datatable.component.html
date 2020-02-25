@@ -25,25 +25,36 @@
 
 
     <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef>Fiscal Name</th>
-      <td mat-cell *matCellDef="let element">
-        <input class="form-control" #fiscalYearName
-          (change)="update(element.fiscalYearID, fiscalYearName.value, element.startDate)">
+      <th mat-header-cell *matHeaderCellDef class="text-center">Fiscal Name</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <input class="form-control"
+        #fiscalYearName
+          (change)="update(element.fiscalYearId, fiscalYearName.value, element.startDate)"
+          [value]="element.fiscalYearName">
       </td>
     </ng-container>
 
 
-    <ng-container matColumnDef="StartDate">
+    <ng-container matColumnDef="StartDate" >
+      <th mat-header-cell *matHeaderCellDef class="text-center">Start Date</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        {{element.startDate | date: 'MMM/yyyy'}}
+      </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="StartDate">
       <th mat-header-cell *matHeaderCellDef>Value</th>
       <td mat-cell *matCellDef="let element">
-        <input type="date" class="form-control" [value]="element.startDate | date : 'MMM/yyyy'" #startDate
-          (change)="update(element.fiscalYearID, element.fiscalYearName, startDate.value)">
+        <input type="date" class="form-control"
+        [value]="element.startDate"
+        #startDate
+          (change)="update(element.fiscalYearId, element.fiscalYearName, startDate.value)">
       </td>
-    </ng-container>
+    </ng-container> -->
 
     <ng-container matColumnDef="EndDate">
-      <th mat-header-cell *matHeaderCellDef>Value</th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="text-center">End Date</th>
+      <td mat-cell *matCellDef="let element" class="text-center">
         {{element.endDate | date: 'MMM/yyyy'}}
       </td>
     </ng-container>
@@ -52,7 +63,7 @@
     <ng-container matColumnDef="Action">
       <th mat-header-cell *matHeaderCellDef> Delete </th>
       <td mat-cell *matCellDef="let element">
-        <button class="btn btn-danger" (click)="delete(element.fiscalYearID)">Delete</button>
+        <button class="btn btn-danger" (click)="delete(element.fiscalYearId)">Delete</button>
       </td>
     </ng-container>
 

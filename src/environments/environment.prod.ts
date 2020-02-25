@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   apiUrl: 'https://localhost:44367/api/',
   applicationTypeAPIUrl: 'ApplicationTypes',
-  attachmentTypeAPIUrl: 'AttachmentsType',
+  attachmentTypeAPIUrl: 'AttachmentTypes',
   businessDomainAPIUrl: 'BusinessDomains',
   customerAPIUrl: 'Customers',
   fiscalYearAPIUrl: 'FiscalYears',

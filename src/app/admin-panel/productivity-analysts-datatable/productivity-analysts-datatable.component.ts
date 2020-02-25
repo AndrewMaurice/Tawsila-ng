@@ -43,6 +43,12 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+            .getAllData()
+            .then((result: IProductivityAnalyst[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -54,14 +60,14 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
 
   update(id: number, productivityAnalystName: string) {
 
-    if (this.isValidInput(productivityAnalystName)) {
+    if (!this.isValidInput(productivityAnalystName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: IProductivityAnalyst = {
-        productivityAnalystID: id,
+        productivityAnalystId: id,
         productivityAnalystName
       };
       this.apiDataService
@@ -91,14 +97,14 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
 
   add() {
     const productivityAnalystName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(productivityAnalystName)) {
+    if (!this.isValidInput(productivityAnalystName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: IProductivityAnalyst = {
-        productivityAnalystID: 0,
+        productivityAnalystId: 0,
         productivityAnalystName
       };
 

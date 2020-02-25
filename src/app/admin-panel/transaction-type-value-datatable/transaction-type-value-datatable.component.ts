@@ -48,6 +48,7 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       .then((result: ITransactionTypeValue[]) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
+        console.log(result);
       });
 
     this.transactionTypesService
@@ -66,6 +67,12 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+      .getAllData()
+      .then((result: ITransactionTypeValue[]) => {
+        this.dataSource = new MatTableDataSource(result);
+        this.dataSource.paginator = this.paginator;
+      });
       })
       .catch(error => {
         this.toastrService
@@ -75,13 +82,13 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       });
   }
 
-  update(id: number, value: number, transactionTypeID: number) {
+  update(id: number, value: number, transactionTypeId: number) {
 
     const newObjectToBeAdded: ITransactionTypeValue = {
-      transactionTypeID,
+      transactionTypeId,
       value,
-      transactionTypeValueID: id,
-      transactionType: null
+      transactionTypeValueId: id,
+      transactionTypeDTO: null
     };
     this.apiDataService
       .putItem(id, newObjectToBeAdded)
@@ -109,45 +116,34 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
   }
 
   add() {
-    if (this.value.errors.required || this.value.errors.pattern) {
-      this.toastrService
-        .error('Please fix the errors in the value field', errorheader, {
-          timeOut: errorTimeOut
-        });
-    } else if (this.transactionType.errors.required) {
-      this.toastrService
-        .error('Transaction type is required', errorheader, {
-          timeOut: errorTimeOut
-        });
-    } else {
-      const newObjectToBeAdded: ITransactionTypeValue = {
-        transactionTypeID: this.transactionType.value,
-        value: this.value.value,
-        transactionTypeValueID: 0,
-        transactionType: null
-      };
-      this.apiDataService
-        .postItem(newObjectToBeAdded)
-        .then(() => {
-          this.toastrService
-            .success(successAddMessage, sucessHeader, {
-              timeOut: successTimeOut
-            });
+    const newObjectToBeAdded: ITransactionTypeValue = {
+      transactionTypeId: this.transactionType.value,
+      value: this.value.value,
+      transactionTypeValueId: 0,
+      transactionTypeDTO: null
+    };
+    console.log(newObjectToBeAdded);
+    this.apiDataService
+      .postItem(newObjectToBeAdded)
+      .then(() => {
+        this.toastrService
+          .success(successAddMessage, sucessHeader, {
+            timeOut: successTimeOut
+          });
 
-          this.apiDataService
-            .getAllData()
-            .then((result: ITransactionTypeValue[]) => {
-              this.dataSource = new MatTableDataSource(result);
-              this.dataSource.paginator = this.paginator;
-            });
-        })
-        .catch(error => {
-          this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
-            });
-        });
-    }
+        this.apiDataService
+          .getAllData()
+          .then((result: ITransactionTypeValue[]) => {
+            this.dataSource = new MatTableDataSource(result);
+            this.dataSource.paginator = this.paginator;
+          });
+      })
+      .catch(error => {
+        this.toastrService
+          .error(error.message, errorheader, {
+            timeOut: errorTimeOut
+          });
+      });
 
   }
 

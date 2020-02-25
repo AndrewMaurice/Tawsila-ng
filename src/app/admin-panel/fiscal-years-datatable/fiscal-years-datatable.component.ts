@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { successDeleteMessage, sucessHeader, successTimeOut,
   errorheader, errorTimeOut, successAddMessage, successUpdateMessage } from 'src/common/global-variables';
 import { isNullOrUndefined } from 'util';
+import { FiscalYearsService } from '../services/fiscal-years.service';
 
 @Component({
   selector: 'app-fiscal-years-datatable',
@@ -35,7 +36,7 @@ export class FiscalYearsDatatableComponent implements OnInit {
 
 
 
-  constructor(private apiDataService: TransactionTypeValuesService,
+  constructor(private apiDataService: FiscalYearsService,
               private toastrService: ToastrService) { }
 
   ngOnInit() {
@@ -58,6 +59,13 @@ export class FiscalYearsDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+          // refresh the list.
+        this.apiDataService
+            .getAllData()
+            .then((result: IFiscalYear[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -75,7 +83,7 @@ export class FiscalYearsDatatableComponent implements OnInit {
       });
     } else {
       const yearToBeUpdated: IFiscalYear = {
-        fiscalYearID: id,
+        fiscalYearId: id,
         fiscalYearName,
         startDate,
         endDate: this.calculateEndDate(startDate)
@@ -101,7 +109,7 @@ export class FiscalYearsDatatableComponent implements OnInit {
 
   add() {
     const itemToBeAdded: IFiscalYear = {
-      fiscalYearID: 0,
+      fiscalYearId: 0,
       fiscalYearName: this.fiscalYearName.value,
       startDate: this.startDate.value,
       endDate: this.calculateEndDate(this.startDate.value)

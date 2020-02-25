@@ -15,11 +15,11 @@
 
     <!-- AttachmentTypeName Column -->
     <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef> Target System </th>
-      <td mat-cell *matCellDef="let element">
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Target System </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
         <input
           class="form-control"
-          [value]="element.targetSystemName"
+          [value]="element.tagetSystemName"
           #targetSystemName
          (change)="update(element.targetSystemID, targetSystemName.value)">
       </td>
@@ -27,9 +27,9 @@
 
     <!-- Action Column -->
     <ng-container matColumnDef="Action">
-      <th mat-header-cell *matHeaderCellDef> Delete </th>
-      <td mat-cell *matCellDef="let element">
-        <button class="btn btn-danger" (click)="delete(element.targetSystemID)">Delete</button>
+      <th mat-header-cell *matHeaderCellDef class="text-center"> Delete </th>
+      <td mat-cell *matCellDef="let element" class="text-center">
+        <button class="btn btn-danger" (click)="delete(element.targetSystemId)">Delete</button>
       </td>
     </ng-container>
 

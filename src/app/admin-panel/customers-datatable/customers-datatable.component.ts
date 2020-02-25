@@ -43,6 +43,13 @@ export class CustomersDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+          // refresh the list.
+        this.apiDataService
+          .getAllData()
+          .then((result: ICustomer[]) => {
+            this.dataSource = new MatTableDataSource(result);
+            this.dataSource.paginator = this.paginator;
+          });
       })
       .catch(error => {
         this.toastrService
@@ -54,14 +61,14 @@ export class CustomersDatatableComponent implements OnInit {
 
   update(id: number, customerName: string) {
 
-    if (this.isValidInput(customerName)) {
+    if (!this.isValidInput(customerName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: ICustomer = {
-        customerID: id,
+        customerId: id,
         customerName
       };
       this.apiDataService
@@ -91,14 +98,14 @@ export class CustomersDatatableComponent implements OnInit {
 
   add() {
     const customerName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(customerName)) {
+    if (!this.isValidInput(customerName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: ICustomer = {
-        customerID: 0,
+        customerId: 0,
         customerName
       };
 

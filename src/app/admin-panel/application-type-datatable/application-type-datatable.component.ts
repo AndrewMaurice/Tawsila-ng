@@ -32,6 +32,7 @@ export class ApplicationTypeDatatableComponent implements OnInit {
       .then((result: IApplicationType[]) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
+
       });
   }
 
@@ -39,7 +40,13 @@ export class ApplicationTypeDatatableComponent implements OnInit {
     this.applicationTypesService
       .deleteItem(id)
       .then(() => {
+        this.applicationTypesService
+        .getAllData()
+        .then((result: IApplicationType[]) => {
+          this.dataSource = new MatTableDataSource(result);
+          this.dataSource.paginator = this.paginator;
 
+        });
         this.toastrService
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
@@ -55,14 +62,14 @@ export class ApplicationTypeDatatableComponent implements OnInit {
 
   update(id: number, applicationTypeName: string) {
 
-    if (this.isValidInput(applicationTypeName)) {
+    if (!this.isValidInput(applicationTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: IApplicationType = {
-        applicationTypeID: id,
+        applicationTypeId: id,
         applicationTypeName
       };
       this.applicationTypesService
@@ -74,6 +81,7 @@ export class ApplicationTypeDatatableComponent implements OnInit {
             .then((result: IApplicationType[]) => {
               this.dataSource = new MatTableDataSource(result);
               this.dataSource.paginator = this.paginator;
+
             });
           this.toastrService
             .success(successUpdateMessage, sucessHeader, {
@@ -92,14 +100,14 @@ export class ApplicationTypeDatatableComponent implements OnInit {
 
   add() {
     const applicationTypeName = this.addNewApplicationTypeName.nativeElement.value;
-    if (this.isValidInput(applicationTypeName)) {
+    if (!this.isValidInput(applicationTypeName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: IApplicationType = {
-        applicationTypeID: 0,
+        applicationTypeId: 0,
         applicationTypeName
       };
 
@@ -130,10 +138,11 @@ export class ApplicationTypeDatatableComponent implements OnInit {
 
   // tslint:disable-next-line: ban-types
   private isValidInput(value: string): Boolean {
-    if (isNullOrUndefined(value)) {
-      return false;
-    } else {
+    value.trim();
+    if (value.length > 0) {
       return true;
+    } else {
+      return false;
     }
   }
 

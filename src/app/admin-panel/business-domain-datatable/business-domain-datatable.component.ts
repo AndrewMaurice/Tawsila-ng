@@ -43,6 +43,14 @@ export class BusinessDomainDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+
+          // refresh the list.
+        this.apiDataService
+            .getAllData()
+            .then((result: IBusinessDomain[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -54,14 +62,14 @@ export class BusinessDomainDatatableComponent implements OnInit {
 
   update(id: number, businessDomainName: string) {
 
-    if (this.isValidInput(businessDomainName)) {
+    if (!this.isValidInput(businessDomainName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: IBusinessDomain = {
-        businessDomainID: id,
+        businessDomainId: id,
         businessDomainName
       };
       this.apiDataService
@@ -91,14 +99,14 @@ export class BusinessDomainDatatableComponent implements OnInit {
 
   add() {
     const businessDomainName = this.addNewBusinessDomainName.nativeElement.value;
-    if (this.isValidInput(businessDomainName)) {
+    if (!this.isValidInput(businessDomainName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: IBusinessDomain = {
-        businessDomainID: 0,
+        businessDomainId: 0,
         businessDomainName
       };
 

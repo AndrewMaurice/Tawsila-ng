@@ -43,6 +43,12 @@ export class TechnologyDatatableComponent implements OnInit {
           .success(successDeleteMessage, sucessHeader, {
             timeOut: successTimeOut
           });
+        this.apiDataService
+            .getAllData()
+            .then((result: ITechnology[]) => {
+              this.dataSource = new MatTableDataSource(result);
+              this.dataSource.paginator = this.paginator;
+            });
       })
       .catch(error => {
         this.toastrService
@@ -54,14 +60,14 @@ export class TechnologyDatatableComponent implements OnInit {
 
   update(id: number, technologyName: string) {
 
-    if (this.isValidInput(technologyName)) {
+    if (!this.isValidInput(technologyName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const updatedAppType: ITechnology = {
-        technologyID: id,
+        technologyId: id,
         technologyName
       };
       this.apiDataService
@@ -91,14 +97,14 @@ export class TechnologyDatatableComponent implements OnInit {
 
   add() {
     const technologyName = this.addNewItem.nativeElement.value;
-    if (this.isValidInput(technologyName)) {
+    if (!this.isValidInput(technologyName)) {
       this.toastrService
         .error('Cannot add an empty name', errorheader, {
           timeOut: errorTimeOut
         });
     } else {
       const newAppType: ITechnology = {
-        technologyID: 0,
+        technologyId: 0,
         technologyName
       };
 

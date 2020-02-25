@@ -1,5 +1,5 @@
 export interface Itechnology {
-  technologyID: number;
+  technologyId: number;
   technologyName: string;
 }
 
@@ -9,117 +9,117 @@ export interface IMonth {
 }
 
 export interface IFiscalYear {
-  fiscalYearID: number;
+  fiscalYearId: number;
   fiscalYearName: string;
   startDate: string;
   endDate: string;
 }
 
 export interface ICustomer {
-  customerID: number;
+  customerId: number;
   customerName: string;
 }
 
 export interface IApplicationType {
-  applicationTypeID: number;
+  applicationTypeId: number;
   applicationTypeName: string;
 }
 
 
 export interface IAttachmentType {
-  attachmentID: number;
+  attachmentId: number;
   attachmentTypeName: string;
 }
 
 export interface IAttachment {
-  attachmentID: number;
-  attachmentTypeID: number;
+  attachmentId: number;
+  attachmentTypeId: number;
   attachmentType: IAttachmentType;
   versionID: number;
   version: IVersion;
 }
 
 export interface IVersion {
-  versionID: number;
+  versionId: number;
   versionName: string;
-  fk_ProcessID: number;
+  fk_ProcessId: number;
   process: IProcess;
   lastVersion: boolean;
 }
 
 export interface IBusinessDomain {
-  businessDomainID: number;
+  businessDomainId: number;
   businessDomainName: string;
 }
 
 export interface IProductivityAnalyst {
-  productivityAnalystID: number;
+  productivityAnalystId: number;
   productivityAnalystName: string;
 }
 
 export interface IRPAType {
-  RPA_TypeID: number;
-  RPA_TypeName: string;
+  rpaTypeId: number;
+  rpaTypeName: string;
 }
 
 export interface ITargetSystem {
-  targetSystemID: number;
-  targetSystemName: string;
+  targetSystemId: number;
+  tagetSystemName: string;
 }
 
 export interface ITransactionType {
-  transactionTypeID: number;
+  transactionTypeId: number;
   transactionTypeName: string;
 }
 
 export interface ITransactionTypeValue {
-  transactionTypeValueID: number;
-  transactionTypeID: number;
-  transactionType: ITransactionType;
+  transactionTypeValueId: number;
+  transactionTypeId: number;
+  transactionTypeDTO: ITransactionType;
   value: number;
 }
 
 export interface IProcess {
-  processID: number;
+  processId: number;
   processName: string;
   sizingDate: string;
-  monthID: number;
+  monthId: number;
   month: IMonth;
   totalFP: number;
   citrix: boolean;
-  fK_ApplicationTypeID: number;
+  fK_ApplicationTypeId: number;
   applicationType: IApplicationType;
-  fK_BusinessDomainID: number;
+  fK_BusinessDomainId: number;
   businessDomain: IBusinessDomain;
-  fK_CustomerID: number;
+  fK_CustomerId: number;
   customer: ICustomer;
-  fK_ProductivityAnalystID: number;
+  fK_ProductivityAnalystId: number;
   productivityAnalyst: IProductivityAnalyst;
-  fK_ProjectID: number;
+  fK_ProjectId: number;
   project: IProject;
-  technologyID: number;
+  technologyId: number;
   technology: Itechnology;
-  fK_RPA_TypeID: number;
+  fK_RPA_TypeId: number;
   RPA_Type: IRPAType;
-  targetSystemID: number;
+  targetSystemId: number;
   targetSystem: ITargetSystem;
   baseline: number;
-  fiscalYearID: number;
+  fiscalYearId: number;
   fiscalYear: IFiscalYear;
 }
 
 export interface IUserStory {
-  userStoryID: number;
+  userStoryId: number;
   userStoryName: string;
-  fK_ProcessID: number;
+  fK_ProcessId: number;
   process: IProcess;
   FP: number;
-  fK_VersionID: number;
+  fK_VersionId: number;
   version: IVersion;
 }
 
 export interface IProject {
-  projectID: number;
+  projectId: number;
   projectName: string;
 }
 
