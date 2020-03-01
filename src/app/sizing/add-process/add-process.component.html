@@ -1,0 +1,180 @@
+<div class="container">
+  <div>
+    <h3>Add a process</h3>
+    <form [formGroup]="addNewProcessFormGroup" (ngSubmit)="addNewProcess()">
+
+      <div class="row">
+        <div class="form-group col-4">
+          <label for="processName">Process Name</label>
+          <input class="form-control" id="processName" [formControl]="processName">
+          <div class="alert alert-danger" *ngIf="processName.invalid && processName.touched">
+            <div *ngIf="processName.errors.required">Please enter the process name</div>
+          </div>
+        </div>
+
+        <div class="form-group col-4">
+          <label for="SizngDate">Sizing Date</label>
+          <input class="form-control" id="SizngDate" type="date" [formControl]="sizingDate">
+          <div class="alert alert-danger" *ngIf="sizingDate.invalid && sizingDate.touched">
+            <div *ngIf="sizingDate.errors.required">Please enter the sizing date</div>
+          </div>
+        </div>
+
+        <div class="form-group col-4">
+          <label for="month">Month</label>
+          <select class="form-control" [formControl]="month">
+            <option *ngFor="let item of months" [value]="item.monthId">
+              {{item.monthName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="month.invalid && month.touched">
+            <div *ngIf="month.errors.required">Please select the month</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-3">
+          <label for="totalFp">Total Function points</label>
+          <input class="form-control" id="totalFp" type="number" [formControl]="totalFp">
+        </div>
+
+        <div class="form-group col-3">
+          <label for="customer">Customer</label>
+          <select class="form-control" [formControl]="customer">
+            <option *ngFor="let item of customers" [value]="item.customerId">
+              {{item.customerName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="customer.invalid && customer.touched">
+            <div *ngIf="customer.errors.required">Please select the customer</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="applicationType">Application Type</label>
+          <select class="form-control" [formControl]="applicationType">
+            <option *ngFor="let item of applicationTypes" [value]="item.applicationTypeId">
+              {{item.applicationTypeName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="applicationType.invalid && applicationType.touched">
+            <div *ngIf="applicationType.errors.required">Please select the application type</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="applicationType">business Domain</label>
+          <select class="form-control" [formControl]="businessDomain">
+            <option *ngFor="let item of businessDomains" [value]="item.businessDomainId">
+              {{item.businessDomainName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="businessDomain.invalid && businessDomain.touched">
+            <div *ngIf="businessDomain.errors.required">Please select the Business Domain</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-3">
+          <label for="ProductivityAnalyst">Productivity Analyst</label>
+          <select class="form-control" [formControl]="productivityAnalyst">
+            <option *ngFor="let item of productivityAnalysts" [value]="item.productivityAnalystId">
+              {{item.productivityAnalystName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="productivityAnalyst.invalid && productivityAnalyst.touched">
+            <div *ngIf="productivityAnalyst.errors.required">Please select the productivity analyst</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="project">Project</label>
+          <select class="form-control" [formControl]="project">
+            <option *ngFor="let item of projects" [value]="item.projectId">
+              {{item.projectName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="project.invalid && project.touched">
+            <div *ngIf="project.errors.required">Please select the project</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="project">Technology</label>
+          <select class="form-control" [formControl]="technology">
+            <option *ngFor="let item of technologies" [value]="item.technologyId">
+              {{item.technologyName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="technology.invalid && technology.touched">
+            <div *ngIf="technology.errors.required">Please select the technology</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="project">RPA Type</label>
+          <select class="form-control" [formControl]="RPA_Type">
+            <option *ngFor="let item of rpaTypes" [value]="item.rpaTypeId">
+              {{item.rpaTypeName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="RPA_Type.invalid && RPA_Type.touched">
+            <div *ngIf="RPA_Type.errors.required">Please select the RPA type</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-3">
+          <label for="project">Target System</label>
+          <select class="form-control" [formControl]="targetSystem">
+            <option *ngFor="let item of targetSystems" [value]="item.targetSystemId">
+              {{item.tagetSystemName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="targetSystem.invalid && targetSystem.touched">
+            <div *ngIf="targetSystem.errors.required">Please select the target system</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="project">Fiscal Year</label>
+          <select class="form-control" [formControl]="fiscalYear">
+            <option *ngFor="let item of fiscalYears" [value]="item.fiscalYearId">
+              {{item.fiscalYearName}}
+            </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="fiscalYear.invalid && fiscalYear.touched">
+            <div *ngIf="fiscalYear.errors.required">Please select the fiscal year</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label for="baseline">Baseline</label>
+          <input class="form-control" id="baseline" [formControl]="baseline">
+          <div class="alert alert-danger" *ngIf="baseline.invalid && baseline.touched">
+            <div *ngIf="baseline.errors.required">Please enter the process name</div>
+          </div>
+        </div>
+
+        <div class="form-group col-3">
+          <label>Citrix</label>
+          <select class="form-control" [formControl]="citrix">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <div class="alert alert-danger" *ngIf="citrix.invalid && citrix.touched">
+            <div *ngIf="citrix.errors.required">Please select the citrix usage</div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <button class="btn btn-primary float-right" type="submit" disabled="!addNewProcessFormGroup.valid">Next</button>
+
+    </form>
+  </div>
+</div>

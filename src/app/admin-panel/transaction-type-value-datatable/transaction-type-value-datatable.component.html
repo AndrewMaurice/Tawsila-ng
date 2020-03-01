@@ -2,7 +2,7 @@
   <form [formGroup]="addNewTransactionTypeFormGroup" (ngSubmit)="add()">
     <div class="form-group">
       <label>Transaction Name</label>
-      <select class="form-control" [formControl]="transactionTypeName">
+      <select class="form-control" [formControl]="transactionType">
         <option *ngFor="let item of transactionTypes" [ngValue]="item.transactionTypeId">
           {{item.transactionTypeName}}
         </option>

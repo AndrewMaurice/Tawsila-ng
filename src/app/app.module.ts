@@ -12,6 +12,8 @@ import { SizingModule } from './sizing/sizing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HomeDashboardModule,
     SizingModule,
     ToastrModule.forRoot(),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MatMenuModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

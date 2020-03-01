@@ -12,5 +12,8 @@ export const environment = {
   TechnologyAPIUrl: 'Technologies',
   TransactionTypeAPIUrl: 'TransactionTypes',
   TransactionTypeValueAPIUrl: 'TransactionTypeValues',
-  projectAPIUrl: 'Projects'
+  projectAPIUrl: 'Projects',
+  processesAPIURL: 'Processes',
+  versionsAPIUrl: 'Versions',
+  monthsAPIUrl: 'Months'
 };
