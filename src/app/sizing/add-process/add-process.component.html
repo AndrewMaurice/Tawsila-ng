@@ -4,42 +4,19 @@
     <form [formGroup]="addNewProcessFormGroup" (ngSubmit)="addNewProcess()">
 
       <div class="row">
-        <div class="form-group col-4">
+        <div class="form-group col-12">
           <label for="processName">Process Name</label>
           <input class="form-control" id="processName" [formControl]="processName">
           <div class="alert alert-danger" *ngIf="processName.invalid && processName.touched">
             <div *ngIf="processName.errors.required">Please enter the process name</div>
           </div>
         </div>
-
-        <div class="form-group col-4">
-          <label for="SizngDate">Sizing Date</label>
-          <input class="form-control" id="SizngDate" type="date" [formControl]="sizingDate">
-          <div class="alert alert-danger" *ngIf="sizingDate.invalid && sizingDate.touched">
-            <div *ngIf="sizingDate.errors.required">Please enter the sizing date</div>
-          </div>
-        </div>
-
-        <div class="form-group col-4">
-          <label for="month">Month</label>
-          <select class="form-control" [formControl]="month">
-            <option *ngFor="let item of months" [value]="item.monthId">
-              {{item.monthName}}
-            </option>
-          </select>
-          <div class="alert alert-danger" *ngIf="month.invalid && month.touched">
-            <div *ngIf="month.errors.required">Please select the month</div>
-          </div>
-        </div>
       </div>
 
       <div class="row">
-        <div class="form-group col-3">
-          <label for="totalFp">Total Function points</label>
-          <input class="form-control" id="totalFp" type="number" [formControl]="totalFp">
-        </div>
 
-        <div class="form-group col-3">
+
+        <div class="form-group col-4">
           <label for="customer">Customer</label>
           <select class="form-control" [formControl]="customer">
             <option *ngFor="let item of customers" [value]="item.customerId">
@@ -51,7 +28,7 @@
           </div>
         </div>
 
-        <div class="form-group col-3">
+        <div class="form-group col-4">
           <label for="applicationType">Application Type</label>
           <select class="form-control" [formControl]="applicationType">
             <option *ngFor="let item of applicationTypes" [value]="item.applicationTypeId">
@@ -63,7 +40,7 @@
           </div>
         </div>
 
-        <div class="form-group col-3">
+        <div class="form-group col-4">
           <label for="applicationType">business Domain</label>
           <select class="form-control" [formControl]="businessDomain">
             <option *ngFor="let item of businessDomains" [value]="item.businessDomainId">
@@ -127,7 +104,7 @@
       </div>
 
       <div class="row">
-        <div class="form-group col-3">
+        <div class="form-group col-4">
           <label for="project">Target System</label>
           <select class="form-control" [formControl]="targetSystem">
             <option *ngFor="let item of targetSystems" [value]="item.targetSystemId">
@@ -139,19 +116,9 @@
           </div>
         </div>
 
-        <div class="form-group col-3">
-          <label for="project">Fiscal Year</label>
-          <select class="form-control" [formControl]="fiscalYear">
-            <option *ngFor="let item of fiscalYears" [value]="item.fiscalYearId">
-              {{item.fiscalYearName}}
-            </option>
-          </select>
-          <div class="alert alert-danger" *ngIf="fiscalYear.invalid && fiscalYear.touched">
-            <div *ngIf="fiscalYear.errors.required">Please select the fiscal year</div>
-          </div>
-        </div>
 
-        <div class="form-group col-3">
+
+        <div class="form-group col-4">
           <label for="baseline">Baseline</label>
           <input type="number" class="form-control" id="baseline" [formControl]="baseline">
           <div class="alert alert-danger" *ngIf="baseline.invalid && baseline.touched">
@@ -160,7 +127,7 @@
           </div>
         </div>
 
-        <div class="form-group col-3">
+        <div class="form-group col-4">
           <label>Citrix</label>
           <select class="form-control" [formControl]="citrix">
             <option value="1">Yes</option>

@@ -25,8 +25,6 @@ export class AddProcessComponent implements OnInit {
   addNewProcessFormGroup = new FormGroup({
     customer: new FormControl('', [Validators.required]),
     processName: new FormControl('', [Validators.required]),
-    sizingDate: new FormControl('', [Validators.required]),
-    month: new FormControl('', [Validators.required]),
     citrix: new FormControl('', [Validators.required]),
     applicationType: new FormControl('', [Validators.required]),
     businessDomain: new FormControl('', [Validators.required]),
@@ -36,8 +34,6 @@ export class AddProcessComponent implements OnInit {
     RPA_Type: new FormControl('', [Validators.required]),
     targetSystem: new FormControl('', [Validators.required]),
     baseline: new FormControl('', [Validators.required, Validators.pattern(/[+-]?([0-9]*[.])?[0-9]+/)]),
-    fiscalYear: new FormControl('', [Validators.required]),
-    totalFp: new FormControl()
   });
 
   customers: ICustomer[];
@@ -48,8 +44,7 @@ export class AddProcessComponent implements OnInit {
   technologies: Itechnology[];
   rpaTypes: IRPAType[];
   targetSystems: ITargetSystem[];
-  fiscalYears: IFiscalYear[];
-  months: IMonth[];
+
 
   constructor(private processService: ProcessesService,
               private customerService: CustomersService,
@@ -60,8 +55,6 @@ export class AddProcessComponent implements OnInit {
               private technologyService: TechnologiesService,
               private rpaTypeServices: RpaTypesService,
               private targetSystemService: TargetSystemsService,
-              private fiscalYearService: FiscalYearsService,
-              private monthsService: MonthsService,
               private router: Router) { }
 
   ngOnInit() {
@@ -113,29 +106,13 @@ export class AddProcessComponent implements OnInit {
       this.targetSystems = result;
     });
 
-    this.fiscalYearService
-    .getAllData()
-    .then((result: IFiscalYear[]) => {
-      this.fiscalYears = result;
-    });
 
-    this.monthsService
-    .getAllData()
-    .then((result: IMonth[]) => {
-      this.months = result;
-    });
 
 
   }
 
 
-  get fiscalYear() {
-    return this.addNewProcessFormGroup.controls.fiscalYear;
-  }
 
-  get totalFp() {
-    return this.addNewProcessFormGroup.controls.totalFp;
-  }
 
   get baseline() {
     return this.addNewProcessFormGroup.controls.baseline;
@@ -173,13 +150,7 @@ export class AddProcessComponent implements OnInit {
     return this.addNewProcessFormGroup.controls.citrix;
   }
 
-  get month() {
-    return this.addNewProcessFormGroup.controls.month;
-  }
 
-  get sizingDate() {
-    return this.addNewProcessFormGroup.controls.sizingDate;
-  }
 
   get customer() {
     return this.addNewProcessFormGroup.controls.customer;
@@ -193,10 +164,6 @@ export class AddProcessComponent implements OnInit {
     const newProcess: IProcess = {
       processId: 0,
       processName: this.processName.value,
-      sizingDate: this.sizingDate.value,
-      monthId: this.month.value,
-      month: null,
-      totalFp: 0,
       citrix: this.citrix.value === '1' ? true : false,
       fKApplicationTypeId: this.applicationType.value,
       fKapplicationType: null,
@@ -215,8 +182,6 @@ export class AddProcessComponent implements OnInit {
       targetSystem: null,
       targetSystemId: this.targetSystem.value,
       baseline: this.baseline.value,
-      fiscalYear: null,
-      fiscalYearId: this.fiscalYear.value
     };
 
     this.processService

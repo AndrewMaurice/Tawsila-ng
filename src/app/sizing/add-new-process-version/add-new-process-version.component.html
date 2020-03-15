@@ -1,18 +1,77 @@
 <div class="container">
   <form [formGroup]="addNewVersionFormGroup" (ngSubmit)="addNewVersion()">
-    <div class="form-group">
-      <label>Process Name</label>
-      <input disabled
-      class="form-control"
-      [formControl]="processName">
+    <div class="row">
+      <div class="form-group col-12">
+        <label>Process Name</label>
+        <input disabled class="form-control" [formControl]="processName">
+      </div>
     </div>
-    <div class="form-group">
-      <label>Version Name</label>
-      <input
-      class="form-control"
-      [formControl]="versionName">
-      <div class="alert alert-danger" *ngIf="versionName.touched && versionName.invalid">
-        <div *ngIf="versionName.errors.required">The version name is required.</div>
+    <div class="row">
+      <!--Version Name-->
+      <div class="form-group col-4">
+        <label>Version Name</label>
+        <input class="form-control" [formControl]="versionName">
+        <div class="alert alert-danger" *ngIf="versionName.touched && versionName.invalid">
+          <div *ngIf="versionName.errors.required">The version name is required.</div>
+        </div>
+      </div>
+
+      <!--Month-->
+      <div class="form-group col-4">
+        <label for="month">Month</label>
+        <select class="form-control" [formControl]="month">
+          <option *ngFor="let item of months" [value]="item.monthId">
+            {{item.monthName}}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="month.invalid && month.touched">
+          <div *ngIf="month.errors.required">Please select the month</div>
+        </div>
+      </div>
+
+      <!--Sizing Date-->
+      <div class="form-group col-4">
+        <label for="SizngDate">Sizing Date</label>
+        <input class="form-control" id="SizngDate" type="date" [formControl]="sizingDate">
+        <div class="alert alert-danger" *ngIf="sizingDate.invalid && sizingDate.touched">
+          <div *ngIf="sizingDate.errors.required">Please enter the sizing date</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <!--Total FP-->
+      <div class="form-group col-3">
+        <label for="totalFp">Total Function points</label>
+        <input class="form-control" id="totalFp" type="number" [formControl]="totalFp">
+      </div>
+
+      <!--Fiscal year-->
+      <div class="form-group col-3">
+        <label for="project">Fiscal Year</label>
+        <select class="form-control" [formControl]="fiscalYear">
+          <option *ngFor="let item of fiscalYears" [value]="item.fiscalYearId">
+            {{item.fiscalYearName}}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="fiscalYear.invalid && fiscalYear.touched">
+          <div *ngIf="fiscalYear.errors.required">Please select the fiscal year</div>
+        </div>
+      </div>
+
+      <!--Version type Id-->
+      <div class="form-group col-3">
+        <label for="project">Version Type</label>
+        <select class="form-control" [formControl]="versionType">
+          <option *ngFor="let item of versionTypes" [value]="item.versionTypeId">
+            {{item.versionTypeName}}
+          </option>
+        </select>
+        <div class="alert alert-danger" *ngIf="versionType.invalid && versionType.touched">
+          <div *ngIf="versionType.errors.required">Please select the Version Type</div>
+        </div>
       </div>
     </div>
     <button class="btn btn-primary" type="submit">Next</button>
