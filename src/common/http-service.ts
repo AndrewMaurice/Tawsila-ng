@@ -17,7 +17,8 @@ export class HttpService {
   postItem(item: any) {
     return this.http.post(this.serverPart + this.url, JSON.stringify(item), {
       headers : {
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+        'Access-Control-Allow-Origin' : '*'
       }
     }).toPromise();
   }

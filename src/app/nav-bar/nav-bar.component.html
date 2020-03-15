@@ -10,6 +10,12 @@
         <a class="nav-link white-color" [routerLink]="['home']">Home</a>
       </li>
       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownProjects" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
+          <a class="dropdown-item" [routerLink]="['add-view-project']">Add/view Projects</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sizing</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" [routerLink]="['add-new-process']">Add new PDD/SDD</a>

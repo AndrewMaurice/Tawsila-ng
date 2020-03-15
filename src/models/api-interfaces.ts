@@ -42,9 +42,17 @@ export interface IAttachment {
 export interface IVersion {
   versionId: number;
   versionName: string;
-  fk_ProcessId: number;
+  fkProcessId: number;
   process: IProcess;
   lastVersion: boolean;
+  sizingDate: string;
+  monthId: number;
+  month: IMonth;
+  totalFp: number;
+  fiscalYearId: number;
+  fiscalYear: IFiscalYear;
+  versionTypeId: number;
+  versionType: IVersionType;
 }
 
 export interface IBusinessDomain {
@@ -79,13 +87,15 @@ export interface ITransactionTypeValue {
   value: number;
 }
 
+
+export interface IVersionType {
+  versionTypeId: number;
+  versionTypeName: string;
+}
+
 export interface IProcess {
   processId: number;
   processName: string;
-  sizingDate: string;
-  monthId: number;
-  month: IMonth;
-  totalFp: number;
   citrix: boolean;
   fKApplicationTypeId: number;
   fKapplicationType: IApplicationType;
@@ -104,8 +114,7 @@ export interface IProcess {
   targetSystemId: number;
   targetSystem: ITargetSystem;
   baseline: number;
-  fiscalYearId: number;
-  fiscalYear: IFiscalYear;
+
 }
 
 export interface IUserStory {

@@ -1,1 +1,20 @@
-<p>add-new-process-version works!</p>
+<div class="container">
+  <form [formGroup]="addNewVersionFormGroup" (ngSubmit)="addNewVersion()">
+    <div class="form-group">
+      <label>Process Name</label>
+      <input disabled
+      class="form-control"
+      [formControl]="processName">
+    </div>
+    <div class="form-group">
+      <label>Version Name</label>
+      <input
+      class="form-control"
+      [formControl]="versionName">
+      <div class="alert alert-danger" *ngIf="versionName.touched && versionName.invalid">
+        <div *ngIf="versionName.errors.required">The version name is required.</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Next</button>
+  </form>
+</div>

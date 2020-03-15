@@ -11,6 +11,7 @@ import { TargetSystemsService } from 'src/app/admin-panel/services/target-system
 import { FiscalYearsService } from 'src/app/admin-panel/services/fiscal-years.service';
 import { MonthsService } from '../services/months.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+// tslint:disable-next-line: max-line-length
 import { ICustomer, IApplicationType, IBusinessDomain, IProductivityAnalyst, IProject, Itechnology, IRPAType, ITargetSystem, IFiscalYear, IMonth, IProcess } from 'src/models/api-interfaces';
 import { Router } from '@angular/router';
 
@@ -34,7 +35,7 @@ export class AddProcessComponent implements OnInit {
     technology: new FormControl('', [Validators.required]),
     RPA_Type: new FormControl('', [Validators.required]),
     targetSystem: new FormControl('', [Validators.required]),
-    baseline: new FormControl('', [Validators.required, Validators.pattern('[0-9].')]),
+    baseline: new FormControl('', [Validators.required, Validators.pattern(/[+-]?([0-9]*[.])?[0-9]+/)]),
     fiscalYear: new FormControl('', [Validators.required]),
     totalFp: new FormControl()
   });
@@ -196,7 +197,7 @@ export class AddProcessComponent implements OnInit {
       monthId: this.month.value,
       month: null,
       totalFp: 0,
-      citrix: this.citrix.value,
+      citrix: this.citrix.value === '1' ? true : false,
       fKApplicationTypeId: this.applicationType.value,
       fKapplicationType: null,
       fKBusinessDomainId: this.businessDomain.value,

@@ -13,7 +13,8 @@ export const environment = {
   TransactionTypeAPIUrl: 'TransactionTypes',
   TransactionTypeValueAPIUrl: 'TransactionTypeValues',
   projectAPIUrl: 'Projects',
-  processesAPIURL: 'Processes',
+  processesAPIURL: 'processes',
   versionsAPIUrl: 'Versions',
-  monthsAPIUrl: 'Months'
+  monthsAPIUrl: 'Months',
+  versiontypes: 'versionTypes'
 };

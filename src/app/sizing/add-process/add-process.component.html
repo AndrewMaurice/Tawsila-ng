@@ -153,9 +153,10 @@
 
         <div class="form-group col-3">
           <label for="baseline">Baseline</label>
-          <input class="form-control" id="baseline" [formControl]="baseline">
+          <input type="number" class="form-control" id="baseline" [formControl]="baseline">
           <div class="alert alert-danger" *ngIf="baseline.invalid && baseline.touched">
-            <div *ngIf="baseline.errors.required">Please enter the process name</div>
+            <div *ngIf="baseline.errors.required">Please enter the baseline </div>
+            <div *ngIf="baseline.errors.pattern">The baseline must be a number </div>
           </div>
         </div>
 
@@ -173,7 +174,7 @@
 
 
 
-      <button class="btn btn-primary float-right" type="submit" disabled="!addNewProcessFormGroup.valid">Next</button>
+      <button class="btn btn-primary float-right" type="submit">Next</button>
 
     </form>
   </div>
