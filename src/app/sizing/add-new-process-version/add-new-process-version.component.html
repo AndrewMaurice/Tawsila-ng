@@ -43,13 +43,13 @@
     <div class="row">
 
       <!--Total FP-->
-      <div class="form-group col-3">
+      <div class="form-group col-4">
         <label for="totalFp">Total Function points</label>
         <input class="form-control" id="totalFp" type="number" [formControl]="totalFp">
       </div>
 
       <!--Fiscal year-->
-      <div class="form-group col-3">
+      <div class="form-group col-4">
         <label for="project">Fiscal Year</label>
         <select class="form-control" [formControl]="fiscalYear">
           <option *ngFor="let item of fiscalYears" [value]="item.fiscalYearId">
@@ -62,7 +62,7 @@
       </div>
 
       <!--Version type Id-->
-      <div class="form-group col-3">
+      <div class="form-group col-4">
         <label for="project">Version Type</label>
         <select class="form-control" [formControl]="versionType">
           <option *ngFor="let item of versionTypes" [value]="item.versionTypeId">
@@ -74,6 +74,6 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit">Next</button>
+    <button class="btn btn-primary float-right" type="submit">Next</button>
   </form>
 </div>
