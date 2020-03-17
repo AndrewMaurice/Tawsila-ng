@@ -1,0 +1,47 @@
+
+<div class="container">
+  <form [formGroup]="updateVersionFormGroup" (ngSubmit)="updateVersionData()">
+
+    <div class="form-group">
+      <label>PDD/SDD Name</label>
+      <input
+      [formControl]="versionName"
+      class="form-control">
+      <div class="alert alert-danger" *ngIf="versionName.invalid && versionName.touched">
+        <div *ngIf="versionName.errors.required">The PDD/SDD name is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Sizing Date</label>
+      <input
+      [formControl]="sizingDate"
+      class="form-control"
+      type="date">
+      <div class="alert alert-danger" *ngIf="sizingDate.invalid && sizingDate.touched">
+        <div *ngIf="sizingDate.errors.required">The Sizing Date is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Month</label>
+      <select [formControl]="month" class="form-control" >
+        <option *ngFor="let item of months" [value]="item.monthId">{{item.monthName}}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="month.invalid && month.touched">
+        <div *ngIf="month.errors.required">The month is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Total FP</label>
+      <input disabled
+      [formControl]="totalFp"
+      class="form-control">
+    </div>
+    <button class="btn btn-primary float-right">Update Version</button>
+    <button class="btn btn-primary float-right" id="add-user-story"(click)="adduserStory()">Add User Story</button>
+  </form>
+</div>
+
+<app-version-user-stories [versionId]="version.versionId"></app-version-user-stories>

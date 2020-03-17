@@ -11,9 +11,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { ViewVersionDetailsComponent } from './view-version-details/view-version-details.component';
+import { VersionUserStoriesComponent } from './version-user-stories/version-user-stories.component';
+import { VersionUserStoryDetailsComponent } from './version-user-story-details/version-user-story-details.component';
 
 @NgModule({
-  declarations: [SizingComponent, AddProcessComponent, AddNewProcessVersionComponent, ViewVerisonsComponent],
+  declarations: [SizingComponent, AddProcessComponent, AddNewProcessVersionComponent, ViewVerisonsComponent, ViewVersionDetailsComponent, VersionUserStoriesComponent, VersionUserStoryDetailsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
