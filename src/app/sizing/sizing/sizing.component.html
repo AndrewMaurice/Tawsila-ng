@@ -1,9 +1,51 @@
 <div class="container">
-  <form>
+  <form [formGroup]="" (ngSubmit)="addUserStory()">
+    <!-- Version Name -->
     <div class="form-group">
       <label>Version Name</label>
-      <input class="form-control">
+      <input
+      class="form-control"
+      [formControl]="version"
+      disabled>
     </div>
+
+    <!-- User Story Name -->
+    <div class="form-group">
+      <label for="userStoryName">User Story</label>
+      <input class="form-control"
+      id="userStoryName"
+      [formControl]="userStoryName">
+      <div class="alert alert-danger" *ngIf="userStoryName.invalid && userStoryName.touched">
+        <div *ngIf="userStoryName.errors.required">The user story is required.</div>
+      </div>
+    </div>
+
+    <!-- Transaction Count -->
+    <div class="form-group">
+      <label for="tarnsactionCount">Transaction Count</label>
+      <input
+      type="number"
+      class="form-control"
+      [formControl]="transactionCount">
+      <div class="alert alert-danger" *ngIf="transactionCount.invalid && transactionCount.touched">
+        <div *ngIf="transactionCount.errors.required">The count is required is required.</div>
+        <div *ngIf="transactionCount.errors.pattern">The count must be at least 1</div>
+      </div>
+    </div>
+
+    <!-- Transaction Type -->
+    <div class="form-group">
+      <label for="transactionType">Transaction</label>
+      <select class="form-control" [formControl]="transactionType">
+        <option *ngFor="let item of transcationTypes"
+        [value]="item.transactionTypeId">{{item.transactionTypeName}}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="transactionType.invalid && transactionType.touched">
+        <div *ngIf="transactionType.errors.required">The transaction is required.</div>
+      </div>
+    </div>
+
+    <button class="float-right btn btn-primary" type="submit">Add user story</button>
   </form>
 
 </div>
