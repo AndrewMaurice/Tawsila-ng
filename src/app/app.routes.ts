@@ -5,6 +5,7 @@ import { HomeDashboardComponent } from './home-dashboard/home-dashboard/home-das
 import { SizingComponent } from './sizing/sizing/sizing.component';
 import { AddProcessComponent } from './sizing/add-process/add-process.component';
 import { ProjectDatatableComponent } from './admin-panel/project-datatable/project-datatable.component';
+import { ViewVerisonsComponent } from './sizing/view-verisons/view-verisons.component';
 
 export const appRoutes: Routes = [
   {path: '', component: HomeDashboardComponent},
@@ -12,5 +13,6 @@ export const appRoutes: Routes = [
   {path: 'admin-panel', component: AdminPanelComponent},
   {path: 'add-new-process', component: AddProcessComponent},
   {path: 'add-view-project', component: ProjectDatatableComponent},
+  {path: 'view-versions', component: ViewVerisonsComponent},
   {path: '**', component: NotFoundComponent},
 ];
