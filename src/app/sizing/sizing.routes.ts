@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { AddNewProcessVersionComponent } from './add-new-process-version/add-new-process-version.component';
 import { AddProcessComponent } from './add-process/add-process.component';
+import { SizingComponent } from './sizing/sizing.component';
 
 export const sizingRoutes: Routes = [
   {path: 'add-new-process', component: AddProcessComponent},
-  {path: 'add-new-process-version/:processId', component: AddNewProcessVersionComponent}
+  {path: 'add-new-process-version/:processId', component: AddNewProcessVersionComponent},
+  {path: 'sizing/:versionId', component: SizingComponent}
 ];

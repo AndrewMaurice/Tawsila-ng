@@ -20,7 +20,8 @@ export const environment = {
   processesAPIURL: 'processes',
   versionsAPIUrl: 'Versions',
   monthsAPIUrl: 'Months',
-  versiontypes: 'versionTypes'
+  versiontypes: 'versionTypes',
+  userstoriesAPIUrl: 'UserStories'
 };
 
 /*
