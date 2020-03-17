@@ -7,13 +7,14 @@ import { IProcess, IVersion, IFiscalYear, IMonth, IVersionType } from 'src/model
 import { FiscalYearsService } from 'src/app/admin-panel/services/fiscal-years.service';
 import { MonthsService } from '../services/months.service';
 import { VersionTypesService } from '../services/version-types.service';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-add-new-process-version',
   templateUrl: './add-new-process-version.component.html',
   styleUrls: ['./add-new-process-version.component.css']
 })
-export class AddNewProcessVersionComponent implements OnInit, AfterViewInit {
+export class AddNewProcessVersionComponent implements OnInit {
 
   addNewVersionFormGroup = new FormGroup({
     versionName: new FormControl('', [Validators.required]),
@@ -22,6 +23,7 @@ export class AddNewProcessVersionComponent implements OnInit, AfterViewInit {
     totalFp: new FormControl(),
     sizingDate: new FormControl('', [Validators.required]),
     month: new FormControl('', [Validators.required]),
+    versionType: new FormControl('', [Validators.required]),
   });
 
   currentProcess: IProcess;
@@ -46,6 +48,11 @@ export class AddNewProcessVersionComponent implements OnInit, AfterViewInit {
       .getItem(params.processId)
       .then((result: IProcess) => {
         this.currentProcess = result;
+        console.log(result);
+        this.addNewVersionFormGroup
+        .controls
+        .processName
+        .setValue(this.currentProcess.processName);
       });
     });
 
@@ -70,12 +77,6 @@ export class AddNewProcessVersionComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
-    this.addNewVersionFormGroup
-    .controls
-    .processName
-    .setValue(this.currentProcess.processName);
-  }
 
 
   get processName() {

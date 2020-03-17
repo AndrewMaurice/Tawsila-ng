@@ -120,10 +120,10 @@ export interface IProcess {
 export interface IUserStory {
   userStoryId: number;
   userStoryName: string;
-  fK_ProcessId: number;
+  fkProcessId: number;
   process: IProcess;
   FP: number;
-  fK_VersionId: number;
+  fkVersionId: number;
   version: IVersion;
 }
 

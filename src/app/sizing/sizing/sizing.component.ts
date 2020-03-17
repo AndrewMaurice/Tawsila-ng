@@ -6,6 +6,7 @@ import { TransactionTypeValuesService } from 'src/app/admin-panel/services/trans
 import { IUserStory, ITransactionType, IVersion, ITransactionTypeValue } from 'src/models/api-interfaces';
 import { VersionsService } from '../services/versions.service';
 import { ActivatedRoute } from '@angular/router';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-sizing',
@@ -56,16 +57,17 @@ export class SizingComponent implements OnInit, AfterViewInit {
       .params
       .subscribe(params => {
         this.versionService
-          .getItem(params.verisonId)
+          .getItem(params.versionId)
           .then((result: IVersion) => {
             this.currentVersion = result;
+            this.version.setValue(this.currentVersion.versionName);
           });
       });
   }
 
 
   ngAfterViewInit(): void {
-    this.version.setValue(this.currentVersion.versionName);
+
   }
 
   get version() {
@@ -91,28 +93,34 @@ export class SizingComponent implements OnInit, AfterViewInit {
     // extract a savable object from the form.
     const userStory: IUserStory = {
       FP: fp,
-      fK_ProcessId: this.currentVersion.fkProcessId,
-      fK_VersionId: this.currentVersion.versionId,
+      fkProcessId: this.currentVersion.fkProcessId,
+      fkVersionId: this.currentVersion.versionId,
       version: null,
       process: null,
       userStoryId: 0,
       userStoryName: this.userStoryName.value
     };
 
+
     // save the user story in the database.
     this.userStoriesService
     .postItem(userStory)
     .then((result) => {
-      console.log(result);
-      if (this.currentVersion.totalFp) {
+      if (!isNullOrUndefined(this.currentVersion.totalFp)) {
         this.currentVersion.totalFp += fp;
       } else {
         this.currentVersion.totalFp = fp;
+        console.log(this.currentVersion);
       }
 
       // update the current version FP in DB.
       this.versionService
       .putItem(this.currentVersion.versionId, this.currentVersion)
+      .then(() => {
+      })
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
 
         // update the current version image in the component.
@@ -124,20 +132,24 @@ export class SizingComponent implements OnInit, AfterViewInit {
       });
     })
     .catch(err => {
-      console.log(err.message);
+      console.log(err);
     });
+
+    this.userStoriesFormGroup.reset();
+    this.version.setValue(this.currentVersion.versionName);
 
   }
 
-  private getTheCurrentFpValue(): number {
-    const currentTransactionValue: any
-    = this.transactionTypesValues
-    .filter(value => {
-      // tslint:disable-next-line: no-unused-expression
-      value.transactionTypeId === this.transactionType.value;
-    });
+  private getTheCurrentFpValue() {
 
-    return currentTransactionValue.value * this.transactionCount.value;
+    let result = this.transactionCount.value;
+    this.transactionTypesValues.forEach(element => {
+      // tslint:disable-next-line: triple-equals
+      if (element.transactionTypeDTO.transactionTypeId == this.transactionType.value) {
+        result *= element.value;
+      }
+    });
+    return result;
   }
 
 }
