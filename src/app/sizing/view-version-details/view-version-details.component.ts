@@ -129,4 +129,8 @@ export class ViewVersionDetailsComponent implements OnInit {
     this.router.navigate(['sizing', this.version.versionId]);
   }
 
+  updateVersionOnRemovingUserStory($event) {
+    console.log($event);
+    this.totalFp.setValue($event);
+  }
 }

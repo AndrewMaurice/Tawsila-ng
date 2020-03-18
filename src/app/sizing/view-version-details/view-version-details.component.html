@@ -44,4 +44,7 @@
   </form>
 </div>
 
-<app-version-user-stories [versionId]="version.versionId"></app-version-user-stories>
+<app-version-user-stories
+[versionId]="version.versionId"
+[version]="version"
+(versionUpdate)="updateVersionOnRemovingUserStory($event)"></app-version-user-stories>
