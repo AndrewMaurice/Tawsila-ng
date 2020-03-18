@@ -1,1 +1,49 @@
-<p>version-user-story-details works!</p>
+<div class="container">
+  <h3>Edit user story details</h3>
+  <form [formGroup]="updateUserStoryFormGroup" (ngSubmit)="updateUserStory()">
+    <div class="form-group">
+      <label>PDD/SDD/CR Name</label>
+      <input disabled
+      class="form-control"
+      [formControl]="versionName">
+    </div>
+
+    <div class="form-group">
+      <label>User story name</label>
+      <input class="form-control"
+      [formControl]="userStoryName">
+      <div class="alert alert-danger" *ngIf="userStoryName.invalid && userStoryName.touched">
+        <div *ngIf="userStoryName.errors.required">The user story name is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>FP</label>
+      <input disabled
+      [formControl]="fp"
+      class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Transaction Count</label>
+      <input type="number"
+      min="1"
+      class="form-control"
+      [formControl]="transactionCount">
+      <div class="alert alert-danger" *ngIf="transactionCount.invalid && transactionCount.touched">
+        <div *ngIf="transactionCount.errors.required">The Transaction Count is required</div>
+        <div *ngIf="transactionCount.errors.pattern">The count must be numeric</div>
+        <div *ngIf="transactionCount.errors.min">The count must be at least 1</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Transaction Type</label>
+      <select [formControl]="tarnsactionType" class="form-control">
+        <option *ngFor="let item of transactionTypes" [value]="item.transactionTypeId">{{item.transactionTypeName}}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary float-right" [disabled]="updateUserStoryFormGroup.invalid && updateUserStoryFormGroup.touched">Update</button>
+  </form>
+</div>

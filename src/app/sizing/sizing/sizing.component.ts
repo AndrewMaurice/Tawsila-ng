@@ -92,7 +92,7 @@ export class SizingComponent implements OnInit, AfterViewInit {
 
     // extract a savable object from the form.
     const userStory: IUserStory = {
-      FP: fp,
+      fp,
       fkProcessId: this.currentVersion.fkProcessId,
       fkVersionId: this.currentVersion.versionId,
       version: null,

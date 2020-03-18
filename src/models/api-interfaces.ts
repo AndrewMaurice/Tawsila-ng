@@ -122,7 +122,7 @@ export interface IUserStory {
   userStoryName: string;
   fkProcessId: number;
   process: IProcess;
-  FP: number;
+  fp: number;
   fkVersionId: number;
   version: IVersion;
 }
