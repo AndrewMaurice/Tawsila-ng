@@ -37,6 +37,7 @@ export interface IAttachment {
   attachmentType: IAttachmentType;
   versionID: number;
   version: IVersion;
+  attachmentName: string;
 }
 
 export interface IVersion {

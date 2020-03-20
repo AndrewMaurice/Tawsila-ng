@@ -21,7 +21,9 @@ export const environment = {
   versionsAPIUrl: 'Versions',
   monthsAPIUrl: 'Months',
   versiontypes: 'versionTypes',
-  userstoriesAPIUrl: 'UserStories'
+  userstoriesAPIUrl: 'UserStories',
+  attachmentsAPIUrl: 'https://localhost:44367/api/Attachments',
+  attachmentAPIUrlTitle: 'Attachments'
 };
 
 /*

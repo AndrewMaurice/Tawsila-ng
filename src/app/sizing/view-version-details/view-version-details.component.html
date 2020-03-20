@@ -43,7 +43,10 @@
     <button class="btn btn-primary float-right">Update Version</button>
     <button class="btn btn-primary float-right" id="add-user-story"(click)="adduserStory()">Add User Story</button>
   </form>
+  <app-upload-attachment-bottom-sheet [versionId]="version.versionId"></app-upload-attachment-bottom-sheet>
 </div>
+
+<app-view-attachments [versionId]="version.versionId"></app-view-attachments>
 
 <app-version-user-stories
 [versionId]="version.versionId"

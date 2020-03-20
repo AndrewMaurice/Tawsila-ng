@@ -14,9 +14,13 @@ import {MatInputModule} from '@angular/material/input';
 import { ViewVersionDetailsComponent } from './view-version-details/view-version-details.component';
 import { VersionUserStoriesComponent } from './version-user-stories/version-user-stories.component';
 import { VersionUserStoryDetailsComponent } from './version-user-story-details/version-user-story-details.component';
+import { UploadAttachmentBottomSheetComponent } from './upload-attachment-bottom-sheet/upload-attachment-bottom-sheet.component';
+import { ViewAttachmentsComponent } from './view-attachments/view-attachments.component';
 
 @NgModule({
-  declarations: [SizingComponent, AddProcessComponent, AddNewProcessVersionComponent, ViewVerisonsComponent, ViewVersionDetailsComponent, VersionUserStoriesComponent, VersionUserStoryDetailsComponent],
+  declarations: [SizingComponent, AddProcessComponent, AddNewProcessVersionComponent,
+    ViewVerisonsComponent, ViewVersionDetailsComponent, VersionUserStoriesComponent,
+    VersionUserStoryDetailsComponent, UploadAttachmentBottomSheetComponent, ViewAttachmentsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

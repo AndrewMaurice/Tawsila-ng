@@ -152,4 +152,5 @@ export class SizingComponent implements OnInit, AfterViewInit {
     return result;
   }
 
+
 }
