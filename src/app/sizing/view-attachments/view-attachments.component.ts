@@ -22,12 +22,8 @@ export class ViewAttachmentsComponent implements OnInit {
   }
 
   downloadAttachment(vId, attachmentId) {
-    this.attachmentsService
-    .downloadItem(vId, attachmentId)
-    .then(() => {
-
-    });
-    console.log('here');
+    return this.attachmentsService
+    .downloadItem(vId, attachmentId);
   }
 
 }
