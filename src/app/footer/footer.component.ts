@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-footer',
@@ -8,13 +9,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private cookiesService: CookieService) { }
 
   ngOnInit() {
   }
 
   logout() {
     this.auth.logout();
+    this.cookiesService.deleteAll();
   }
 
 }
