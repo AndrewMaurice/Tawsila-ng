@@ -9,3 +9,8 @@ img {
 nav {
   margin: auto;
 }
+
+.navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link {
+  color: white;
+  cursor: pointer;
+}
