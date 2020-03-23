@@ -1,0 +1,14 @@
+img {
+  width: 40%;
+  height: 50%;
+}
+
+.row {
+  margin-top: 3%;
+}
+
+h4 {
+  text-align: center;
+  margin: auto;
+  display: block;
+}

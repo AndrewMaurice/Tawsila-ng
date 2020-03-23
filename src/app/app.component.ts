@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ export class AppComponent {
 
   title = 'rpa-automation-tool';
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
 }

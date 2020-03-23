@@ -1,1 +1,10 @@
-<p>home-dashboard works!</p>
+<main>
+  <app-landing-main></app-landing-main>
+  <h3 id="mainTitle">Our top features</h3>
+
+  <app-sizing-feature-main [description]="descriptionSection1" [imgUrl]="imgSection1" [inverse]="false">
+  </app-sizing-feature-main>
+
+  <app-sizing-feature-main [description]="descriptionSection2" [imgUrl]="imgSection2" [inverse]="true">
+  </app-sizing-feature-main>
+</main>
