@@ -27,7 +27,7 @@ export const environment = {
   auth: {
     clientID: 'du24sh2ssXFO5uNH6fAow1ylSPQAzmKD',
     domain: 'dev-jy4o22j5.eu.auth0.com',
-    audience: 'http://localhost:4200/',
+    audience: 'https://localhost:44367/',
     redirect: 'http://localhost:4200/',
     scope: ''
   }
