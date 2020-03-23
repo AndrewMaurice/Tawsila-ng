@@ -25,7 +25,7 @@ export const environment = {
   attachmentsAPIUrl: 'https://localhost:44367/api/Attachments',
   attachmentAPIUrlTitle: 'Attachments',
   auth: {
-    clientID: 'jPejNA40qsNcLs6oPefLg4A2Lm4Li9Bx',
+    clientID: 'du24sh2ssXFO5uNH6fAow1ylSPQAzmKD',
     domain: 'dev-jy4o22j5.eu.auth0.com',
     audience: 'http://localhost:4200/',
     redirect: 'http://localhost:4200/',

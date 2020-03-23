@@ -14,11 +14,11 @@ export class NavBarComponent implements OnInit {
   }
 
   onLoginClick() {
-
+    this.auth.login();
   }
 
   onLogoutClick() {
-
+    this.auth.logout();
   }
 
 }

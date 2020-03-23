@@ -26,11 +26,13 @@
         <li class="nav-item" *ngIf="auth.loggedIn">
           <a class="nav-link white-color" [routerLink]="['admin-panel']">Admin Panel</a>
         </li>
+      </ul>
+      <ul class="navbar-nav float-right">
         <li class="nav-item float-right">
-          <button class="btn btn-link" (click)="onLoginClick()" *ngIf="!auth.loggedIn">Login</button>
+          <button class="btn btn-dark float-right" (click)="onLoginClick()" *ngIf="!auth.loggedIn">Login</button>
         </li>
         <li class="nav-item float-right">
-          <button class="btn btn-link" (click)="onLogoutClick()" *ngIf="auth.loggedIn">Logout</button>
+          <button class="btn btn-dark float-right" (click)="onLogoutClick()" *ngIf="auth.loggedIn">Logout</button>
         </li>
       </ul>
     </div>
