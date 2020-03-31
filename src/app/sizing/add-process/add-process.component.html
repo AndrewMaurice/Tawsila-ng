@@ -91,7 +91,7 @@
         </div>
 
         <div class="form-group col-3">
-          <label for="project">RPA Type</label>
+          <label for="project">Delivery Line</label>
           <select class="form-control" [formControl]="RPA_Type">
             <option *ngFor="let item of rpaTypes" [value]="item.rpaTypeId">
               {{item.rpaTypeName}}
@@ -106,11 +106,10 @@
       <div class="row">
         <div class="form-group col-4">
           <label for="project">Target System</label>
-          <select class="form-control" [formControl]="targetSystem">
-            <option *ngFor="let item of targetSystems" [value]="item.targetSystemId">
-              {{item.tagetSystemName}}
-            </option>
-          </select>
+          <input
+          [formControl]="targetSystem"
+          class="form-control"
+          type="number">
           <div class="alert alert-danger" *ngIf="targetSystem.invalid && targetSystem.touched">
             <div *ngIf="targetSystem.errors.required">Please select the target system</div>
           </div>
@@ -118,14 +117,14 @@
 
 
 
-        <div class="form-group col-4">
+        <!-- <div class="form-group col-4">
           <label for="baseline">Baseline</label>
           <input type="number" class="form-control" id="baseline" [formControl]="baseline">
           <div class="alert alert-danger" *ngIf="baseline.invalid && baseline.touched">
             <div *ngIf="baseline.errors.required">Please enter the baseline </div>
             <div *ngIf="baseline.errors.pattern">The baseline must be a number </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="form-group col-4">
           <label>Citrix</label>
