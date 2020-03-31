@@ -8,7 +8,7 @@
     </div>
     <div class="row">
       <!--Version Name-->
-      <div class="form-group col-4">
+      <div class="form-group col-12">
         <label>Version Name</label>
         <input class="form-control" [formControl]="versionName">
         <div class="alert alert-danger" *ngIf="versionName.touched && versionName.invalid">
@@ -16,8 +16,8 @@
         </div>
       </div>
 
-      <!--Month-->
-      <div class="form-group col-4">
+
+      <!-- <div class="form-group col-4">
         <label for="month">Month</label>
         <select class="form-control" [formControl]="month">
           <option *ngFor="let item of months" [value]="item.monthId">
@@ -29,27 +29,27 @@
         </div>
       </div>
 
-      <!--Sizing Date-->
+
       <div class="form-group col-4">
         <label for="SizngDate">Sizing Date</label>
         <input class="form-control" id="SizngDate" type="date" [formControl]="sizingDate">
         <div class="alert alert-danger" *ngIf="sizingDate.invalid && sizingDate.touched">
           <div *ngIf="sizingDate.errors.required">Please enter the sizing date</div>
         </div>
-      </div>
+      </div> -->
 
     </div>
 
     <div class="row">
 
-      <!--Total FP-->
-      <div class="form-group col-4">
+
+      <!-- <div class="form-group col-4">
         <label for="totalFp">Total Function points</label>
         <input class="form-control" id="totalFp" type="number" [formControl]="totalFp">
-      </div>
+      </div> -->
 
-      <!--Fiscal year-->
-      <div class="form-group col-4">
+
+      <!-- <div class="form-group col-4">
         <label for="project">Fiscal Year</label>
         <select class="form-control" [formControl]="fiscalYear">
           <option *ngFor="let item of fiscalYears" [value]="item.fiscalYearId">
@@ -59,10 +59,10 @@
         <div class="alert alert-danger" *ngIf="fiscalYear.invalid && fiscalYear.touched">
           <div *ngIf="fiscalYear.errors.required">Please select the fiscal year</div>
         </div>
-      </div>
+      </div> -->
 
       <!--Version type Id-->
-      <div class="form-group col-4">
+      <div class="form-group col-12">
         <label for="project">Version Type</label>
         <select class="form-control" [formControl]="versionType">
           <option *ngFor="let item of versionTypes" [value]="item.versionTypeId">
