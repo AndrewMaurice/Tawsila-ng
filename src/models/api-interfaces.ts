@@ -91,7 +91,7 @@ export interface ITransactionTypeValue {
 
 export interface IVersionType {
   versionTypeId: number;
-  versionTypeName: string;
+  verionTypeName: string;
 }
 
 export interface IProcess {

@@ -48,7 +48,6 @@ export class AddNewProcessVersionComponent implements OnInit {
       .getItem(params.processId)
       .then((result: IProcess) => {
         this.currentProcess = result;
-        console.log(result);
         this.addNewVersionFormGroup
         .controls
         .processName
@@ -71,6 +70,7 @@ export class AddNewProcessVersionComponent implements OnInit {
     this.versionTypesService
     .getAllData()
     .then((result: IVersionType[]) => {
+      console.log(result);
       this.versionTypes = result;
     });
 

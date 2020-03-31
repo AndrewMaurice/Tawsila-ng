@@ -66,7 +66,7 @@
         <label for="project">Version Type</label>
         <select class="form-control" [formControl]="versionType">
           <option *ngFor="let item of versionTypes" [value]="item.versionTypeId">
-            {{item.versionTypeName}}
+            {{item.verionTypeName}}
           </option>
         </select>
         <div class="alert alert-danger" *ngIf="versionType.invalid && versionType.touched">

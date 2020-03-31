@@ -20,7 +20,7 @@ export const environment = {
   processesAPIURL: 'processes',
   versionsAPIUrl: 'Versions',
   monthsAPIUrl: 'Months',
-  versiontypes: 'versionTypes',
+  versiontypes: 'VersionTypes',
   userstoriesAPIUrl: 'UserStories',
   attachmentsAPIUrl: 'https://localhost:44367/api/Attachments',
   attachmentAPIUrlTitle: 'Attachments',
