@@ -23,6 +23,7 @@ import { TransactionTypeDatatableComponent } from './transaction-type-datatable/
 import { TransactionTypeValueDatatableComponent } from './transaction-type-value-datatable/transaction-type-value-datatable.component';
 import { FiscalYearsDatatableComponent } from './fiscal-years-datatable/fiscal-years-datatable.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AdminPanelComponent, LookupsTabsComponent,
@@ -40,6 +41,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatPaginatorModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSnackBarModule,
     NgbModule
   ],
   providers: [ApplicationTypesService]

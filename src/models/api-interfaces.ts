@@ -131,6 +131,10 @@ export interface IUserStory {
 export interface IProject {
   projectId: number;
   projectName: string;
+  customer: ICustomer;
+  customerId: number;
+  rpaType: IRPAType;
+  rpaTypeId: number;
 }
 
 
