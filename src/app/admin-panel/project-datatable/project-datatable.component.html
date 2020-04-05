@@ -38,31 +38,35 @@
 
   <table mat-table [dataSource]="dataSource">
 
-    <!-- AttachmentTypeName Column -->
+    <!-- Project Name Column -->
     <ng-container matColumnDef="Name" class="text-center">
       <th mat-header-cell *matHeaderCellDef class="text-center"> Project Name </th>
       <td mat-cell *matCellDef="let element">
         <input class="form-control" [value]="element.projectName" #projectName
-          (change)="update(element.projectId, projectName.value)">
+          (change)="update(element.projectId, projectName.value, element.rpaTypeId, element.customerId)">
       </td>
     </ng-container>
 
-    <!-- AttachmentTypeName Column -->
+    <!-- Delivery Line Column -->
     <ng-container matColumnDef="RpaTye" class="text-center">
       <th mat-header-cell *matHeaderCellDef class="text-center"> Delivery Line </th>
       <td mat-cell *matCellDef="let element">
-        <select [value]="element.rpaTypeId" class="form-control">
-          <option *ngFor=""></option>
+        <select [value]="element.rpaTypeId" class="form-control" #deliveryLine
+        (change)="update(element.projectId, element.projectName, deliveryLine.vlaue, element.customerId)">
+          <option *ngFor="let item of rpaTypes" [value]="item.rpaTypeId">{{item.rpaTypeName}}</option>
         </select>
       </td>
     </ng-container>
 
-    <!-- AttachmentTypeName Column -->
+    <!-- Customer Column -->
     <ng-container matColumnDef="Customer" class="text-center">
       <th mat-header-cell *matHeaderCellDef class="text-center"> Customer </th>
       <td mat-cell *matCellDef="let element">
-        <input class="form-control" [value]="element.projectName" #projectName
-          (change)="update(element.projectId, projectName.value)">
+        <select [value]="element.customerId"
+        (change)="update(update(element.projectId, element.projectName, element.rpaTypeId, customer.value))"
+        class="form-control" #customer>
+          <option *ngFor="let item of rpaTypes" [value]="item.rpaTypeId">{{item.rpaTypeName}}</option>
+        </select>
       </td>
     </ng-container>
 
