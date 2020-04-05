@@ -80,10 +80,10 @@ export class ProjectDatatableComponent implements OnInit {
       .deleteItem(id)
       .then(() => {
 
-        this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
-          });
+        this.snackBar.open(successDeleteMessage, sucessHeader, {
+          duration: successTimeOut
+        });
+
         this.apiDataService
             .getAllData()
             .then((result: IProject[]) => {
@@ -92,47 +92,38 @@ export class ProjectDatatableComponent implements OnInit {
             });
       })
       .catch(error => {
-        this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
-          });
+        this.snackBar
+        .open(error.message, errorheader, {
+          duration: errorTimeOut
+        });
       });
   }
 
-  update(id: number, projectName: string) {
+  update(id: number, projectName: string, deliveryLine: number, customer: number) {
 
-    // if (!this.isValidInput(projectName)) {
-    //   this.toastrService
-    //     .error('Cannot add an empty name', errorheader, {
-    //       timeOut: errorTimeOut
-    //     });
-    // } else {
-    //   const updatedAppType: IProject = {
-    //     projectId: id,
-    //     projectName
-    //   };
-    //   this.apiDataService
-    //     .putItem(id, updatedAppType)
-    //     .then(() => {
-    //       // refresh the list.
-    //       this.apiDataService
-    //         .getAllData()
-    //         .then((result: IProject[]) => {
-    //           this.dataSource = new MatTableDataSource(result);
-    //           this.dataSource.paginator = this.paginator;
-    //         });
-    //       this.toastrService
-    //         .success(successUpdateMessage, sucessHeader, {
-    //           timeOut: successTimeOut
-    //         });
-    //     })
-    //     .catch(error => {
-    //       this.toastrService
-    //         .error(error.message, errorheader, {
-    //           timeOut: errorTimeOut
-    //         });
-    //     });
-    // }
+    const project: IProject = {
+      projectId: id,
+      customerId: customer,
+      rpaTypeId: deliveryLine,
+      rpaType: null,
+      customer: null,
+      projectName
+    };
+
+    this.apiDataService
+    .putItem(id, project)
+    .then(() => {
+      this.snackBar
+      .open(successUpdateMessage, sucessHeader, {
+        duration: successTimeOut
+      });
+    })
+    .catch(err => {
+      this.snackBar
+      .open(err.message, errorheader, {
+        duration: errorTimeOut
+      });
+    });
 
   }
 
