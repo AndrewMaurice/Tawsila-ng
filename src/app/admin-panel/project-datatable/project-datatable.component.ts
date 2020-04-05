@@ -11,6 +11,7 @@ import { ProjectsService } from '../services/projects.service';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { RpaTypesService } from '../services/rpa-types.service';
 import { CustomersService } from '../services/customers.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-project-datatable',
@@ -48,7 +49,8 @@ export class ProjectDatatableComponent implements OnInit {
   constructor(private apiDataService: ProjectsService,
               private toastrService: ToastrService,
               private rpaTypesServcie: RpaTypesService,
-              private customersServcie: CustomersService) { }
+              private customersServcie: CustomersService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.apiDataService
@@ -147,12 +149,23 @@ export class ProjectDatatableComponent implements OnInit {
     this.apiDataService
     .postItem(newProject)
     .then(() => {
+
+      this.snackBar.open(successAddMessage, sucessHeader, {
+        duration: successTimeOut
+      });
+
       // on success refresh the table.
       this.apiDataService
       .getAllData()
       .then((result: IProject[]) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
+      });
+    })
+    .catch(err => {
+      this.snackBar
+      .open(err.message, errorheader, {
+        duration: errorTimeOut
       });
     });
 
