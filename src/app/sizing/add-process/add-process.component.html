@@ -106,25 +106,23 @@
       <div class="row">
         <div class="form-group col-4">
           <label for="project">Target System</label>
-          <input
-          [formControl]="targetSystem"
-          class="form-control"
-          type="number">
+          <input [formControl]="targetSystem" class="form-control" type="number">
           <div class="alert alert-danger" *ngIf="targetSystem.invalid && targetSystem.touched">
-            <div *ngIf="targetSystem.errors.required">Please select the target system</div>
+            <div *ngIf="targetSystem.errors.required">Please enter the number of the target systems</div>
           </div>
         </div>
 
 
 
-        <!-- <div class="form-group col-4">
+        <div class="form-group col-4">
           <label for="baseline">Baseline</label>
-          <input type="number" class="form-control" id="baseline" [formControl]="baseline">
+          <select class="form-control" [formControl]="baseline">
+            <option *ngFor="let item of baselines" [value]="item.baseLineId">{{item.fiscalYear.fiscalYearName}}</option>
+          </select>
           <div class="alert alert-danger" *ngIf="baseline.invalid && baseline.touched">
             <div *ngIf="baseline.errors.required">Please enter the baseline </div>
-            <div *ngIf="baseline.errors.pattern">The baseline must be a number </div>
           </div>
-        </div> -->
+        </div>
 
         <div class="form-group col-4">
           <label>Citrix</label>
@@ -137,11 +135,79 @@
           </div>
         </div>
       </div>
-
-
-
-      <button class="btn btn-primary float-right" type="submit">Next</button>
-
+      <button class="btn btn-primary float-right" type="submit" [disabled]="(addNewProcessFormGroup.invalid && addNewProcessFormGroup.touched) || (!addNewProcessFormGroup.touched)">Add</button>
     </form>
   </div>
+</div>
+
+<h3>Existing Processes</h3>
+<div class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="ProcessName" sticky>
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['./', element.processId]">{{element.processName}}</a>
+      </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Customer">
+      <th mat-header-cell *matHeaderCellDef> Customer </th>
+      <td mat-cell *matCellDef="let element"> {{element.fKcustomer.customerName}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Applicationtype">
+      <th mat-header-cell *matHeaderCellDef> Application type </th>
+      <td mat-cell *matCellDef="let element"> {{element.fKapplicationType.applicationTypeName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="businessDomain">
+      <th mat-header-cell *matHeaderCellDef> Business Domain </th>
+      <td mat-cell *matCellDef="let element"> {{element.fKBusinessDomain.businessDomainName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="productivityAnalyst">
+      <th mat-header-cell *matHeaderCellDef> Productivity Analyst </th>
+      <td mat-cell *matCellDef="let element"> {{element.fKproductivityAnalyst.productivityAnalystName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Project">
+      <th mat-header-cell *matHeaderCellDef> Project </th>
+      <td mat-cell *matCellDef="let element"> {{element.fKproject.projectName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="technology">
+      <th mat-header-cell *matHeaderCellDef> Technology </th>
+      <td mat-cell *matCellDef="let element"> {{element.technology.technologyName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="rpaType">
+      <th mat-header-cell *matHeaderCellDef> Delivery Line </th>
+      <td mat-cell *matCellDef="let element"> {{element.fKRpaType.rpaTypeName}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="targetSystem">
+      <th mat-header-cell *matHeaderCellDef> Target System </th>
+      <td mat-cell *matCellDef="let element"> {{element.targetSystemId}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="baseline">
+      <th mat-header-cell *matHeaderCellDef> Baseline </th>
+      <td mat-cell *matCellDef="let element"> {{element.baseline.baseLineName}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>

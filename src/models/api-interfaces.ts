@@ -113,7 +113,6 @@ export interface IProcess {
   fkRpaTypeId: number;
   fKRpaType: IRPAType;
   targetSystemId: number;
-  targetSystem: ITargetSystem;
   baselineId: number;
   baseline: IBaseline;
 }
