@@ -1,9 +1,12 @@
 <div class="container">
+  <h3>Add new PDD/SDD</h3>
   <form [formGroup]="addNewVersionFormGroup" (ngSubmit)="addNewVersion()">
     <div class="row">
       <div class="form-group col-12">
         <label>Process Name</label>
-        <input disabled class="form-control" [formControl]="processName">
+        <select class="form-control" [formControl]="processName">
+          <option *ngFor="let item of processes" [value]="item.processId">{{item.processName}}</option>
+        </select>
       </div>
     </div>
     <div class="row">
@@ -55,7 +58,7 @@
       </div> -->
       <!--Version type Id-->
       <div class="form-group col-12">
-        <label for="project">Version Type</label>
+        <label for="project">PDD/SDD Name</label>
         <select class="form-control" [formControl]="versionType">
           <option *ngFor="let item of versionTypes" [value]="item.versionTypeId">
             {{item.verionTypeName}}
@@ -66,6 +69,7 @@
         </div>
       </div>
     </div>
-    <button class="btn btn-primary float-right" type="submit">Next</button>
+    <button class="btn btn-primary float-right" type="submit"
+    [disabled]="(addNewVersionFormGroup.invalid && addNewVersionFormGroup.touched) || !addNewVersionFormGroup.touched">Next</button>
   </form>
 </div>

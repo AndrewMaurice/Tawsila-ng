@@ -30,9 +30,9 @@ export class AddNewProcessVersionComponent implements OnInit {
   fiscalYears: IFiscalYear[];
   months: IMonth[];
   versionTypes: IVersionType[];
+  processes: IProcess[];
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private versionsService: VersionsService,
+  constructor(private versionsService: VersionsService,
               private processService: ProcessesService,
               private fiscalYearService: FiscalYearsService,
               private monthsService: MonthsService,
@@ -41,18 +41,10 @@ export class AddNewProcessVersionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.activatedRoute
-    .params
-    .subscribe(params => {
-      this.processService
-      .getItem(params.processId)
-      .then((result: IProcess) => {
-        this.currentProcess = result;
-        this.addNewVersionFormGroup
-        .controls
-        .processName
-        .setValue(this.currentProcess.processName);
-      });
+    this.processService
+    .getAllData()
+    .then((result: IProcess[]) => {
+      this.processes = result;
     });
 
     this.fiscalYearService
