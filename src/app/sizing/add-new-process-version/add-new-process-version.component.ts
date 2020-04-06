@@ -8,6 +8,8 @@ import { FiscalYearsService } from 'src/app/admin-panel/services/fiscal-years.se
 import { MonthsService } from '../services/months.service';
 import { VersionTypesService } from '../services/version-types.service';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { errorheader, errorTimeOut, successAddMessage, sucessHeader, successTimeOut } from 'src/common/global-variables';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-new-process-version',
@@ -37,7 +39,8 @@ export class AddNewProcessVersionComponent implements OnInit {
               private fiscalYearService: FiscalYearsService,
               private monthsService: MonthsService,
               private versionTypesService: VersionTypesService,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -119,11 +122,16 @@ export class AddNewProcessVersionComponent implements OnInit {
     this.versionsService
     .postItem(version)
     .then((result: IVersion) => {
+      this.snackBar.open(successAddMessage, sucessHeader, {
+        duration: successTimeOut
+      });
       // navigate to the sizing pag with the ID.
       this.router.navigate(['sizing', result.versionId]);
     })
     .catch(error => {
-      console.log(error.message);
+      this.snackBar.open(error.message, errorheader, {
+        duration: errorTimeOut
+      });
     });
   }
 
