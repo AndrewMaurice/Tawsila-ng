@@ -18,6 +18,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ProjectModule } from './project/project.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CookieService } from 'ngx-cookie-service';
     ToastrModule.forRoot(),
     NgbModule.forRoot(),
     MatMenuModule,
-    MatButtonModule
+    MatButtonModule,
+    ProjectModule
   ],
   providers: [
     {
