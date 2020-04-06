@@ -114,8 +114,17 @@ export interface IProcess {
   fKRpaType: IRPAType;
   targetSystemId: number;
   targetSystem: ITargetSystem;
-  baseline: number;
+  baselineId: number;
+  baseline: IBaseline;
+}
 
+export interface IBaseline {
+  baseLineId: number;
+  baselineProdFp: number;
+  marketAvgProdFp: number;
+  targetProdFp: number;
+  fiscalYearId: number;
+  fiscalYear: IFiscalYear;
 }
 
 export interface IUserStory {

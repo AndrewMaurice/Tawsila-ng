@@ -179,7 +179,8 @@ export class AddProcessComponent implements OnInit {
       fKRpaType: null,
       targetSystem: null,
       targetSystemId: this.targetSystem.value,
-      baseline: this.baseline.value,
+      baselineId: this.baseline.value,
+      baseline: null
     };
 
     this.processService

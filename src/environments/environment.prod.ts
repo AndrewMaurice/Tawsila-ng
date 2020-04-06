@@ -20,6 +20,7 @@ export const environment = {
   userstoriesAPIUrl: 'UserStories',
   attachmentsAPIUrl: 'https://localhost:44367/api/Attachments',
   attachmentAPIUrlTitle: 'Attachments',
+  baselinesAPIUrl: 'Baselines',
   auth: {
     clientID: 'du24sh2ssXFO5uNH6fAow1ylSPQAzmKD',
     domain: 'dev-jy4o22j5.eu.auth0.com',
