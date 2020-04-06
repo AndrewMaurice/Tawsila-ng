@@ -141,7 +141,12 @@
 </div>
 
 <h3>Existing Processes</h3>
+<mat-form-field class="col-12">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+</mat-form-field>
 <div class="example-container mat-elevation-z8">
+
   <table mat-table [dataSource]="dataSource">
 
     <!-- Name Column -->
