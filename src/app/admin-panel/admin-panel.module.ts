@@ -26,6 +26,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddProcessComponent } from './add-process/add-process.component';
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 @NgModule({
   declarations: [AdminPanelComponent, LookupsTabsComponent,
     ApplicationTypeDatatableComponent, AttachmentTypeDatatableComponent,
@@ -43,7 +46,9 @@ import { AddProcessComponent } from './add-process/add-process.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    NgbModule
+    NgbModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [ApplicationTypesService]
 })
