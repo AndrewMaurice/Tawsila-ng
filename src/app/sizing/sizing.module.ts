@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SizingComponent } from './sizing/sizing.component';
-import { AddProcessComponent } from './add-process/add-process.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddNewProcessVersionComponent } from './add-new-process-version/add-new-process-version.component';
 import { RouterModule } from '@angular/router';
@@ -18,7 +17,7 @@ import { UploadAttachmentBottomSheetComponent } from './upload-attachment-bottom
 import { ViewAttachmentsComponent } from './view-attachments/view-attachments.component';
 
 @NgModule({
-  declarations: [SizingComponent, AddProcessComponent, AddNewProcessVersionComponent,
+  declarations: [SizingComponent, AddNewProcessVersionComponent,
     ViewVerisonsComponent, ViewVersionDetailsComponent, VersionUserStoriesComponent,
     VersionUserStoryDetailsComponent, UploadAttachmentBottomSheetComponent, ViewAttachmentsComponent],
   imports: [

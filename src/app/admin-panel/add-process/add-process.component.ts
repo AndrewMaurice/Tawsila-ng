@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProcessesService } from '../services/processes.service';
 import { CustomersService } from 'src/app/admin-panel/services/customers.service';
 import { BusinessDomainsService } from 'src/app/admin-panel/services/business-domains.service';
 import { ApplicationTypesService } from 'src/app/admin-panel/services/application-types.service';
@@ -12,9 +11,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 // tslint:disable-next-line: max-line-length
 import { ICustomer, IApplicationType, IBusinessDomain, IProductivityAnalyst, IProject, Itechnology, IRPAType, ITargetSystem, IFiscalYear, IMonth, IProcess, IBaseline } from 'src/models/api-interfaces';
 import { Router } from '@angular/router';
-import { BaselinesService } from '../services/baselines.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { BaselinesService } from 'src/app/sizing/services/baselines.service';
+import { ProcessesService } from 'src/app/sizing/services/processes.service';
 
 @Component({
   selector: 'app-add-process',
@@ -202,8 +202,6 @@ export class AddProcessComponent implements OnInit {
     this.processService
       .postItem(newProcess)
       .then((result: IProcess) => {
-        console.log(result);
-        this.router.navigate(['add-new-process-version', result.processId]);
       })
       .catch(error => {
         console.log(error);

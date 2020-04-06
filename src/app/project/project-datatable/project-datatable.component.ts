@@ -1,17 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { IProject, IRPAType, ICustomer } from 'src/models/api-interfaces';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';import { ICustomer, IRPAType, IProject } from 'src/models/api-interfaces';import { FormGroup, FormControl, Validators } from '@angular/forms';import { MatTableDataSource } from '@angular/material/table';import { MatPaginator } from '@angular/material/paginator';import { ProjectsService } from 'src/app/admin-panel/services/projects.service';import { ToastrService } from 'ngx-toastr';import { RpaTypesService } from 'src/app/admin-panel/services/rpa-types.service';import { CustomersService } from 'src/app/admin-panel/services/customers.service';import { MatSnackBar } from '@angular/material/snack-bar';import { successDeleteMessage, sucessHeader, successTimeOut, errorheader, errorTimeOut, successUpdateMessage, successAddMessage } from 'src/common/global-variables';import { isNullOrUndefined } from 'util';
 
-import { ToastrService } from 'ngx-toastr';
-import { successDeleteMessage, sucessHeader, successTimeOut,
-  errorheader, errorTimeOut, successUpdateMessage, successAddMessage } from 'src/common/global-variables';
-import { isNullOrUndefined } from 'util';
-import { ProjectsService } from '../services/projects.service';
-import { Validators, FormControl, FormGroup } from '@angular/forms';
-import { RpaTypesService } from '../services/rpa-types.service';
-import { CustomersService } from '../services/customers.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-project-datatable',

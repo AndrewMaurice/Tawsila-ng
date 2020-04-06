@@ -15,7 +15,7 @@ import { AttachmentTypeDatatableComponent } from './attachment-type-datatable/at
 import { BusinessDomainDatatableComponent } from './business-domain-datatable/business-domain-datatable.component';
 import { CustomersDatatableComponent } from './customers-datatable/customers-datatable.component';
 import { ProductivityAnalystsDatatableComponent } from './productivity-analysts-datatable/productivity-analysts-datatable.component';
-import { ProjectDatatableComponent } from './project-datatable/project-datatable.component';
+
 import { RpaTypesDatatableComponent } from './rpa-types-datatable/rpa-types-datatable.component';
 import { TargetSystemDatatableComponent } from './target-system-datatable/target-system-datatable.component';
 import { TechnologyDatatableComponent } from './technology-datatable/technology-datatable.component';
@@ -24,15 +24,16 @@ import { TransactionTypeValueDatatableComponent } from './transaction-type-value
 import { FiscalYearsDatatableComponent } from './fiscal-years-datatable/fiscal-years-datatable.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AddProcessComponent } from './add-process/add-process.component';
 
 @NgModule({
   declarations: [AdminPanelComponent, LookupsTabsComponent,
     ApplicationTypeDatatableComponent, AttachmentTypeDatatableComponent,
     BusinessDomainDatatableComponent, CustomersDatatableComponent,
-    ProductivityAnalystsDatatableComponent, ProjectDatatableComponent,
+    ProductivityAnalystsDatatableComponent,
     RpaTypesDatatableComponent, TargetSystemDatatableComponent, TechnologyDatatableComponent,
     TransactionTypeDatatableComponent, TransactionTypeValueDatatableComponent,
-    FiscalYearsDatatableComponent],
+    FiscalYearsDatatableComponent, AddProcessComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(adminPanelRoutes),
