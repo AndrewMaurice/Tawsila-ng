@@ -70,7 +70,6 @@ export class EditProcessComponent implements OnInit {
           .getItem(params.proccessId)
           .then((result: IProcess) => {
             this.currentProcess = result;
-            console.log(this.currentProcess);
             // initializing the form.
             this.processName.setValue(this.currentProcess.processName);
             this.baseline.setValue(this.currentProcess.baseline.baselineProdFp);
