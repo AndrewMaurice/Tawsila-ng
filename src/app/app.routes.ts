@@ -6,6 +6,7 @@ import { SizingComponent } from './sizing/sizing/sizing.component';
 import { ViewVerisonsComponent } from './sizing/view-verisons/view-verisons.component';
 import { AddProcessComponent } from './admin-panel/add-process/add-process.component';
 import { ProjectDatatableComponent } from './project/project-datatable/project-datatable.component';
+import { EditProcessComponent } from './admin-panel/edit-process/edit-process.component';
 
 export const appRoutes: Routes = [
   {path: '', component: HomeDashboardComponent},

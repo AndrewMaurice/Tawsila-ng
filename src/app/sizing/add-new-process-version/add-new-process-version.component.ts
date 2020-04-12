@@ -65,7 +65,6 @@ export class AddNewProcessVersionComponent implements OnInit {
     this.versionTypesService
     .getAllData()
     .then((result: IVersionType[]) => {
-      console.log(result);
       this.versionTypes = result;
     });
 

@@ -1,29 +1,28 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CustomersService } from 'src/app/admin-panel/services/customers.service';
-import { BusinessDomainsService } from 'src/app/admin-panel/services/business-domains.service';
-import { ApplicationTypesService } from 'src/app/admin-panel/services/application-types.service';
-import { ProjectsService } from 'src/app/admin-panel/services/projects.service';
-import { ProductivityAnalystsService } from 'src/app/admin-panel/services/productivity-analysts.service';
-import { TechnologiesService } from 'src/app/admin-panel/services/technologies.service';
-import { RpaTypesService } from 'src/app/admin-panel/services/rpa-types.service';
-import { TargetSystemsService } from 'src/app/admin-panel/services/target-systems.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-// tslint:disable-next-line: max-line-length
-import { ICustomer, IApplicationType, IBusinessDomain, IProductivityAnalyst, IProject, Itechnology, IRPAType, ITargetSystem, IFiscalYear, IMonth, IProcess, IBaseline } from 'src/models/api-interfaces';
-import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { BaselinesService } from 'src/app/sizing/services/baselines.service';
+import { IBaseline, ICustomer, IApplicationType, IBusinessDomain, IProductivityAnalyst, IProject, Itechnology, IRPAType, ITargetSystem, IProcess } from 'src/models/api-interfaces';
 import { ProcessesService } from 'src/app/sizing/services/processes.service';
+import { CustomersService } from '../services/customers.service';
+import { ApplicationTypesService } from '../services/application-types.service';
+import { BusinessDomainsService } from '../services/business-domains.service';
+import { ProductivityAnalystsService } from '../services/productivity-analysts.service';
+import { ProjectsService } from '../services/projects.service';
+import { TechnologiesService } from '../services/technologies.service';
+import { RpaTypesService } from '../services/rpa-types.service';
+import { TargetSystemsService } from '../services/target-systems.service';
+import { BaselinesService } from 'src/app/sizing/services/baselines.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { errorheader, errorTimeOut, successUpdateMessage, sucessHeader, successTimeOut } from 'src/common/global-variables';
 
 @Component({
-  selector: 'app-add-process',
-  templateUrl: './add-process.component.html',
-  styleUrls: ['./add-process.component.css']
+  selector: 'app-edit-process',
+  templateUrl: './edit-process.component.html',
+  styleUrls: ['./edit-process.component.css']
 })
-export class AddProcessComponent implements OnInit {
-
-  addNewProcessFormGroup = new FormGroup({
+export class EditProcessComponent implements OnInit {
+  updateProcessFormGroup = new FormGroup({
     customer: new FormControl('', [Validators.required]),
     processName: new FormControl('', [Validators.required]),
     citrix: new FormControl('', [Validators.required]),
@@ -46,12 +45,7 @@ export class AddProcessComponent implements OnInit {
   technologies: Itechnology[];
   rpaTypes: IRPAType[];
   targetSystems: ITargetSystem[];
-
-  dataSource: MatTableDataSource<IProcess>;
-  displayedColumns = ['ProcessName', 'Customer', 'Applicationtype',
-    'businessDomain', 'productivityAnalyst', 'Project', 'technology', 'rpaType', 'targetSystem', 'baseline'];
-
-  @ViewChild(MatPaginator, null) paginator: MatPaginator;
+  currentProcess: IProcess;
 
   constructor(private processService: ProcessesService,
               private customerService: CustomersService,
@@ -63,15 +57,34 @@ export class AddProcessComponent implements OnInit {
               private rpaTypeServices: RpaTypesService,
               private targetSystemService: TargetSystemsService,
               private router: Router,
-              private baslinesServcie: BaselinesService) { }
+              private baslinesServcie: BaselinesService,
+              private activatedRoute: ActivatedRoute,
+              private snackbar: MatSnackBar) { }
 
   ngOnInit() {
 
-    this.processService
-      .getAllData()
-      .then((result: IProcess[]) => {
-        this.dataSource = new MatTableDataSource(result);
-        this.dataSource.paginator = this.paginator;
+    this.activatedRoute
+      .params
+      .subscribe(params => {
+        this.processService
+          .getItem(params.proccessId)
+          .then((result: IProcess) => {
+            this.currentProcess = result;
+            console.log(this.currentProcess);
+            // initializing the form.
+            this.processName.setValue(this.currentProcess.processName);
+            this.baseline.setValue(this.currentProcess.baseline.baselineProdFp);
+            this.RPA_Type.setValue(this.currentProcess.fkRpaTypeId);
+            this.targetSystem.setValue(this.currentProcess.targetSystemId);
+            this.technology.setValue(this.currentProcess.technologyId);
+            this.applicationType.setValue(this.currentProcess.fKApplicationTypeId);
+            this.businessDomain.setValue(this.currentProcess.fKBusinessDomainId);
+            this.customer.setValue(this.currentProcess.fKCustomerId);
+            this.project.setValue(this.currentProcess.fKProjectId);
+            this.productivityAnalyst.setValue(this.currentProcess.fKProductivityAnalystId);
+            this.citrix.setValue(this.currentProcess.citrix);
+
+          });
       });
 
     this.customerService
@@ -127,55 +140,57 @@ export class AddProcessComponent implements OnInit {
       .then((result: IBaseline[]) => {
         this.baselines = result;
       });
+
+
   }
 
   get baseline() {
-    return this.addNewProcessFormGroup.controls.baseline;
+    return this.updateProcessFormGroup.controls.baseline;
   }
 
   get targetSystem() {
-    return this.addNewProcessFormGroup.controls.targetSystem;
+    return this.updateProcessFormGroup.controls.targetSystem;
   }
 
   get RPA_Type() {
-    return this.addNewProcessFormGroup.controls.RPA_Type;
+    return this.updateProcessFormGroup.controls.RPA_Type;
   }
 
   get technology() {
-    return this.addNewProcessFormGroup.controls.technology;
+    return this.updateProcessFormGroup.controls.technology;
   }
 
   get project() {
-    return this.addNewProcessFormGroup.controls.project;
+    return this.updateProcessFormGroup.controls.project;
   }
 
   get productivityAnalyst() {
-    return this.addNewProcessFormGroup.controls.productivityAnalyst;
+    return this.updateProcessFormGroup.controls.productivityAnalyst;
   }
 
   get businessDomain() {
-    return this.addNewProcessFormGroup.controls.businessDomain;
+    return this.updateProcessFormGroup.controls.businessDomain;
   }
 
   get applicationType() {
-    return this.addNewProcessFormGroup.controls.applicationType;
+    return this.updateProcessFormGroup.controls.applicationType;
   }
 
   get citrix() {
-    return this.addNewProcessFormGroup.controls.citrix;
+    return this.updateProcessFormGroup.controls.citrix;
   }
 
   get customer() {
-    return this.addNewProcessFormGroup.controls.customer;
+    return this.updateProcessFormGroup.controls.customer;
   }
 
   get processName() {
-    return this.addNewProcessFormGroup.controls.processName;
+    return this.updateProcessFormGroup.controls.processName;
   }
 
-  addNewProcess() {
+  updateProcess() {
     const newProcess: IProcess = {
-      processId: 0,
+      processId: this.currentProcess.processId,
       processName: this.processName.value,
       citrix: this.citrix.value === '1' ? true : false,
       fKApplicationTypeId: this.applicationType.value,
@@ -198,25 +213,19 @@ export class AddProcessComponent implements OnInit {
     };
 
     this.processService
-      .postItem(newProcess)
-      .then((result: IProcess) => {
+      .putItem(this.currentProcess.processId, newProcess)
+      .then(() => {
+        this.snackbar.open(successUpdateMessage, sucessHeader, {
+          duration: successTimeOut
+        });
+        this.router.navigate(['admin-panel']);
       })
       .catch(error => {
-        console.log(error);
-      })
-      .finally(() => {
-        this.processService
-          .getAllData()
-          .then((result: IProcess[]) => {
-            this.dataSource = new MatTableDataSource(result);
-            this.dataSource.paginator = this.paginator;
-          });
+        this.snackbar.open(error.message, errorheader, {
+          duration: errorTimeOut
+        });
       });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
 
 }
