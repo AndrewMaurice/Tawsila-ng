@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentInit } from '@angular/core';
 import { CustomersService } from 'src/app/admin-panel/services/customers.service';
 import { BusinessDomainsService } from 'src/app/admin-panel/services/business-domains.service';
 import { ApplicationTypesService } from 'src/app/admin-panel/services/application-types.service';
@@ -21,7 +21,7 @@ import { ProcessesService } from 'src/app/sizing/services/processes.service';
   templateUrl: './add-process.component.html',
   styleUrls: ['./add-process.component.css']
 })
-export class AddProcessComponent implements OnInit {
+export class AddProcessComponent implements OnInit, AfterContentInit {
 
   addNewProcessFormGroup = new FormGroup({
     customer: new FormControl('', [Validators.required]),
@@ -48,8 +48,8 @@ export class AddProcessComponent implements OnInit {
   targetSystems: ITargetSystem[];
 
   dataSource: MatTableDataSource<IProcess>;
-  displayedColumns = ['ProcessName', 'Customer', 'Applicationtype',
-    'businessDomain', 'productivityAnalyst', 'Project', 'technology', 'rpaType', 'targetSystem', 'baseline'];
+  displayedColumns = ['ProcessName', 'Customer',
+     'productivityAnalyst', 'Project', 'technology', 'rpaType', 'targetSystem', 'baseline'];
 
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
@@ -67,12 +67,13 @@ export class AddProcessComponent implements OnInit {
 
   ngOnInit() {
 
-    this.processService
-      .getAllData()
-      .then((result: IProcess[]) => {
-        this.dataSource = new MatTableDataSource(result);
-        this.dataSource.paginator = this.paginator;
-      });
+    // this.processService
+    //   .getAllData()
+    //   .then((result: IProcess[]) => {
+    //     console.log(result);
+    //     this.dataSource = new MatTableDataSource(result);
+    //     this.dataSource.paginator = this.paginator;
+    //   });
 
     this.customerService
       .getAllData()
@@ -126,7 +127,18 @@ export class AddProcessComponent implements OnInit {
       .getAllData()
       .then((result: IBaseline[]) => {
         this.baselines = result;
+        console.log(result);
       });
+  }
+
+
+  ngAfterContentInit(): void {
+    this.processService
+    .getAllData()
+    .then((result: IProcess[]) => {
+      this.dataSource = new MatTableDataSource(result);
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
   get baseline() {

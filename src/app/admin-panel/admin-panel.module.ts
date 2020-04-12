@@ -29,6 +29,7 @@ import { AddProcessComponent } from './add-process/add-process.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { EditProcessComponent } from './edit-process/edit-process.component';
+import { BaselineDatatabbleComponent } from './baseline-datatabble/baseline-datatabble.component';
 
 @NgModule({
   declarations: [AdminPanelComponent, LookupsTabsComponent,
@@ -37,7 +38,7 @@ import { EditProcessComponent } from './edit-process/edit-process.component';
     ProductivityAnalystsDatatableComponent,
     RpaTypesDatatableComponent, TargetSystemDatatableComponent, TechnologyDatatableComponent,
     TransactionTypeDatatableComponent, TransactionTypeValueDatatableComponent,
-    FiscalYearsDatatableComponent, AddProcessComponent, EditProcessComponent],
+    FiscalYearsDatatableComponent, AddProcessComponent, EditProcessComponent, BaselineDatatabbleComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(adminPanelRoutes),

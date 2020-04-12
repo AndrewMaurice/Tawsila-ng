@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VersionsService } from '../services/versions.service';
-import { IVersion } from 'src/models/api-interfaces';
+import { IVersion, IProcess } from 'src/models/api-interfaces';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { ProcessesService } from '../services/processes.service';
 
 @Component({
   selector: 'app-view-verisons',
@@ -12,7 +13,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class ViewVerisonsComponent implements OnInit {
 
   private versions: IVersion[];
-  displayedColumns: string[] = ['versionName', 'fp'];
+  displayedColumns: string[] = ['versionName', 'date', 'fp'];
   dataSource = new MatTableDataSource<IVersion>();
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 

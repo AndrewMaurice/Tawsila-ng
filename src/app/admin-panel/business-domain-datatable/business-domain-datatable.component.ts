@@ -31,7 +31,7 @@ export class BusinessDomainDatatableComponent implements OnInit {
       .then((result: IBusinessDomain[]) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
-        console.log(result);
+
       });
   }
 

@@ -48,7 +48,6 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       .then((result: ITransactionTypeValue[]) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
-        console.log(result);
       });
 
     this.transactionTypesService
