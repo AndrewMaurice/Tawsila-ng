@@ -1,4 +1,5 @@
 <div class="container">
+  <h3>Add User Stories</h3>
   <form [formGroup]="userStoriesFormGroup" (ngSubmit)="addUserStory()">
     <!-- Version Name -->
     <div class="form-group">
@@ -20,28 +21,97 @@
       </div>
     </div>
 
-    <!-- Transaction Count -->
-    <div class="form-group">
-      <label for="tarnsactionCount">Transaction Count</label>
-      <input
-      type="number"
-      class="form-control"
-      [formControl]="transactionCount">
-      <div class="alert alert-danger" *ngIf="transactionCount.invalid && transactionCount.touched">
-        <div *ngIf="transactionCount.errors.required">The count is required is required.</div>
-        <div *ngIf="transactionCount.errors.pattern">The count must be at least 1</div>
+    <h4>Transactions</h4>
+
+    <div class="row">
+      <div class="col-3 form-group">
+        <label>IT Count</label>
+        <input class="form-control" type="number" [formControl]="itCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>IT Complexity</label>
+        <select [formControl]="it" class="form-control">
+          <option *ngFor="let item of inputs" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
+      </div>
+      <div class="col-3 form-group">
+        <label>IA Count</label>
+        <input class="form-control" type="number" [formControl]="iaCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>IA Complexity</label>
+        <select [formControl]="ia" class="form-control">
+          <option *ngFor="let item of inputs" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
       </div>
     </div>
 
-    <!-- Transaction Type -->
-    <div class="form-group">
-      <label for="transactionType">Transaction</label>
-      <select class="form-control" [formControl]="transactionType">
-        <option *ngFor="let item of transcationTypes"
-        [value]="item.transactionTypeId">{{item.transactionTypeName}}</option>
-      </select>
-      <div class="alert alert-danger" *ngIf="transactionType.invalid && transactionType.touched">
-        <div *ngIf="transactionType.errors.required">The transaction is required.</div>
+    <div class="row">
+      <div class="col-3 form-group">
+        <label>OT Count</label>
+        <input class="form-control" type="number" [formControl]="otCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>OT Complexity</label>
+        <select [formControl]="ot" class="form-control">
+          <option *ngFor="let item of outputs" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
+      </div>
+      <div class="col-3 form-group">
+        <label>OA Count</label>
+        <input class="form-control" type="number" [formControl]="oaCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>OA Complexity</label>
+        <select [formControl]="oa" class="form-control">
+          <option *ngFor="let item of outputs" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 form-group">
+        <label>ET Count</label>
+        <input class="form-control" type="number" [formControl]="etCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>ET Complexity</label>
+        <select [formControl]="et" class="form-control">
+          <option *ngFor="let item of enquiry" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
+      </div>
+      <div class="col-3 form-group">
+        <label>BR Count</label>
+        <input class="form-control" type="number" [formControl]="brCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>BR Complexity</label>
+        <select [formControl]="br" class="form-control">
+          <option *ngFor="let item of businessRules" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 form-group">
+        <label>IDG Count</label>
+        <input class="form-control" type="number" [formControl]="idgCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>IDG Complexity</label>
+        <select [formControl]="idg" class="form-control">
+          <option *ngFor="let item of idgs" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
+      </div>
+      <div class="col-3 form-group">
+        <label>EDG Count</label>
+        <input class="form-control" type="number" [formControl]="edgCount">
+      </div>
+      <div class="col-3 form-group">
+        <label>EDG Complexity</label>
+        <select [formControl]="edg" class="form-control">
+          <option *ngFor="let item of edgs" [value]="item.value">{{item.transactionTypeDTO.transactionTypeName}}</option>
+        </select>
       </div>
     </div>
 

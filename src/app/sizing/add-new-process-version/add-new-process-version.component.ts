@@ -105,7 +105,7 @@ export class AddNewProcessVersionComponent implements OnInit {
     const version: IVersion = {
       versionId: 0,
       versionName: this.versionName.value,
-      fkProcessId: this.currentProcess.processId,
+      fkProcessId: this.processName.value,
       process: null,
       sizingDate: this.sizingDate.value,
       lastVersion: true,

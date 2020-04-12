@@ -8,24 +8,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav col-11">
-        <li class="nav-item active">
+        <li class="nav-item active" *ngIf="auth.loggedIn">
           <a class="nav-link white-color" [routerLink]="['home']">Home</a>
         </li>
-        <li class="nav-item dropdown" >
+        <li class="nav-item dropdown" *ngIf="auth.loggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdownProjects" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownProjects">
             <a class="dropdown-item" [routerLink]="['add-view-project']">Add/view Projects</a>
           </div>
         </li>
-        <li class="nav-item dropdown" >
+        <li class="nav-item dropdown" *ngIf="auth.loggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sizing</a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" [routerLink]="['add-new-process-version']">Add new PDD/SDD</a>
             <a class="dropdown-item" [routerLink]="['view-versions']">View existing PDD/SDD</a>
           </div>
         </li>
-        <li class="nav-item"
-        >
+        <li class="nav-item" *ngIf="auth.loggedIn">
           <a class="nav-link white-color" [routerLink]="['admin-panel']">Admin Panel</a>
         </li>
       </ul>

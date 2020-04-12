@@ -5,6 +5,10 @@ import { IVersion, IUserStory, ITransactionTypeValue, ITransactionType } from 's
 import { TransactionTypesService } from 'src/app/admin-panel/services/transaction-types.service';
 import { TransactionTypeValuesService } from 'src/app/admin-panel/services/transaction-type-values.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { errorheader, errorTimeOut, successUpdateMessage, sucessHeader, successTimeOut } from 'src/common/global-variables';
+import { ValueTransformer } from '@angular/compiler/src/util';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-version-user-story-details',
@@ -17,19 +21,40 @@ export class VersionUserStoryDetailsComponent implements OnInit {
   currentUserStory: IUserStory;
   transactionTypes: ITransactionType[];
   transactionTypeValues: ITransactionTypeValue[];
+  inputs: ITransactionTypeValue[];
+  outputs: ITransactionTypeValue[];
+  enquiry: ITransactionTypeValue[];
+  idgs: ITransactionTypeValue[];
+  edgs: ITransactionTypeValue[];
+  businessRules: ITransactionTypeValue[];
 
   updateUserStoryFormGroup = new FormGroup({
     versionName: new FormControl(),
     userStoryName: new FormControl('', [Validators.required]),
     fp: new FormControl(),
-    transactionCount: new FormControl('', [Validators.required, Validators.pattern(/[0-9]/), Validators.min(1)]),
-    transactionType: new FormControl('', [Validators.required])
+    it: new FormControl(),
+    itCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    ia: new FormControl(),
+    iaCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    oa: new FormControl(),
+    ot: new FormControl(),
+    otCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    oaCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    et: new FormControl(),
+    etCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    br: new FormControl(),
+    brCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    edg: new FormControl(),
+    edgCount: new FormControl('', Validators.pattern(/[0-9]/)),
+    idg: new FormControl(),
+    idgCount: new FormControl('', Validators.pattern(/[0-9]/))
   });
 
   constructor(private userStoiresService: UserStoriesService,
               private versionsServcie: VersionsService,
               private transactionTypesServcie: TransactionTypesService,
-              private transactionTypesValuesServcie: TransactionTypeValuesService) {}
+              private transactionTypesValuesServcie: TransactionTypeValuesService,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit() {
 
@@ -45,6 +70,45 @@ export class VersionUserStoryDetailsComponent implements OnInit {
     .getAllData()
     .then((result: ITransactionTypeValue[]) => {
       this.transactionTypeValues = result;
+
+
+      this.inputs = this.transactionTypeValues.filter(values => {
+        if (values.transactionTypeId >= 1 && values.transactionTypeId <= 3) {
+          return values;
+        }
+      });
+
+      this.enquiry = this.transactionTypeValues.filter(values => {
+        if (values.transactionTypeId >= 4 && values.transactionTypeId <= 6) {
+          return values;
+        }
+      });
+
+      this.outputs = this.transactionTypeValues.filter(Values => {
+        if (Values.transactionTypeId >= 7 && Values.transactionTypeId <= 9 ) {
+          return Values;
+        }
+      });
+
+      this.businessRules = this.transactionTypeValues.filter(values => {
+        if (values.transactionTypeId >= 10 && values.transactionTypeId <= 13) {
+          return values;
+        }
+      });
+
+      this.idgs = this.transactionTypeValues.filter(values => {
+        if (values.transactionTypeId >= 14 && values.transactionTypeId <= 16) {
+          return values;
+        }
+      });
+
+      this.edgs = this.transactionTypeValues.filter(values => {
+        if (values.transactionTypeId >= 17 && values.transactionTypeId <= 19) {
+          return values;
+        }
+      });
+
+
     });
 
     // get the version and the userstory.
@@ -55,9 +119,14 @@ export class VersionUserStoryDetailsComponent implements OnInit {
     this.fp.setValue(this.currentUserStory.fp);
     this.versionName.setValue(this.currentVersion.versionName);
     this.userStoryName.setValue(this.currentUserStory.userStoryName);
-    this.transactionCount.setValue(1);
-
-
+    this.iaCount.setValue(0);
+    this.itCount.setValue(0);
+    this.oaCount.setValue(0);
+    this.otCount.setValue(0);
+    this.etCount.setValue(0);
+    this.brCount.setValue(0);
+    this.idgCount.setValue(0);
+    this.edgCount.setValue(0);
   }
 
 
@@ -73,24 +142,71 @@ export class VersionUserStoryDetailsComponent implements OnInit {
     return this.updateUserStoryFormGroup.controls.fp;
   }
 
-  get transactionCount() {
-    return this.updateUserStoryFormGroup.controls.transactionCount;
+  get it() {
+    return this.updateUserStoryFormGroup.controls.it;
   }
 
-  get tarnsactionType() {
-    return this.updateUserStoryFormGroup.controls.transactionType;
+  get itCount() {
+    return this.updateUserStoryFormGroup.controls.itCount;
   }
 
+  get ia() {
+    return this.updateUserStoryFormGroup.controls.ia;
+  }
+
+  get iaCount() {
+    return this.updateUserStoryFormGroup.controls.iaCount;
+  }
+
+  get ot() {
+    return this.updateUserStoryFormGroup.controls.ot;
+  }
+
+  get otCount() {
+    return this.updateUserStoryFormGroup.controls.otCount;
+  }
+
+  get oa() {
+    return this.updateUserStoryFormGroup.controls.oa;
+  }
+
+  get oaCount() {
+    return this.updateUserStoryFormGroup.controls.oaCount;
+  }
+
+  get et() {
+    return this.updateUserStoryFormGroup.controls.et;
+  }
+
+  get etCount() {
+    return this.updateUserStoryFormGroup.controls.etCount;
+  }
+
+  get br() {
+    return this.updateUserStoryFormGroup.controls.it;
+  }
+
+  get brCount() {
+    return this.updateUserStoryFormGroup.controls.brCount;
+  }
+
+  get edg() {
+    return this.updateUserStoryFormGroup.controls.edg;
+  }
+
+  get edgCount() {
+    return this.updateUserStoryFormGroup.controls.edgCount;
+  }
+
+  get idg() {
+    return this.updateUserStoryFormGroup.controls.idg;
+  }
+
+  get idgCount() {
+    return this.updateUserStoryFormGroup.controls.idgCount;
+  }
 
   updateUserStory() {
-    /*
-    TODO:
-      1- update the version object i.e. subtract the function points from the current version.
-      2- update the user story object.
-      3- update the version fp.
-      4- update the user story in DB.
-      5- update the version in DB.
-    */
 
     this.currentVersion.totalFp -= this.fp.value;
     this.currentUserStory.fp = this.calculateTheFp();
@@ -98,30 +214,60 @@ export class VersionUserStoryDetailsComponent implements OnInit {
 
     this.userStoiresService
     .putItem(this.currentUserStory.userStoryId, this.currentUserStory)
-    .catch(err => console.log(err))
+    .catch(err => this.snackBar.open(err.message, errorheader, {duration: errorTimeOut}))
     .then(() => {
       this.versionsServcie
       .putItem(this.currentVersion.versionId, this.currentVersion)
-      .catch(err => console.log(err))
+      .catch(err => this.snackBar.open(err.message, errorheader, {duration: errorTimeOut}))
       .then(() => {
+        this.snackBar
+        .open(successUpdateMessage, sucessHeader, {
+          duration: successTimeOut
+        });
         // setting the default values for the form.
         this.fp.setValue(this.currentUserStory.fp);
         this.versionName.setValue(this.currentVersion.versionName);
         this.userStoryName.setValue(this.currentUserStory.userStoryName);
-        this.transactionCount.setValue(1);
+        this.iaCount.setValue(0);
+        this.itCount.setValue(0);
+        this.oaCount.setValue(0);
+        this.otCount.setValue(0);
+        this.etCount.setValue(0);
+        this.brCount.setValue(0);
+        this.idgCount.setValue(0);
+        this.edgCount.setValue(0);
       });
     });
   }
 
   private calculateTheFp(): number {
-    let result = this.transactionCount.value;
+    let result = 0;
 
-    this.transactionTypeValues.forEach(element => {
-      // tslint:disable-next-line: triple-equals
-      if (element.transactionTypeDTO.transactionTypeId == this.tarnsactionType.value) {
-        result *= element.value;
-      }
-    });
+    const it = isNullOrUndefined(this.it.value) ? 0 : this.it.value;
+    const ia = isNullOrUndefined(this.ia.value) ? 0 : this.ia.value;
+    const ot = isNullOrUndefined(this.ot.value) ? 0 : this.ot.value;
+    const oa = isNullOrUndefined(this.oa.value) ? 0 : this.oa.value;
+    const et = isNullOrUndefined(this.et.value) ? 0 : this.et.value;
+    const idg = isNullOrUndefined(this.idg.value) ? 0 : this.idg.value;
+    const br = isNullOrUndefined(this.br.value) ? 0 : this.br.value;
+    const edg = isNullOrUndefined(this.edg.value) ? 0 : this.edg.value;
+
+    const itC = isNullOrUndefined(this.itCount) ? 0 : this.itCount.value;
+    const iaC = isNullOrUndefined(this.iaCount) ? 0 : this.iaCount.value;
+    const otC = isNullOrUndefined(this.otCount) ? 0 : this.otCount.value;
+    const oaC = isNullOrUndefined(this.oaCount) ? 0 : this.oaCount.value;
+    const etC = isNullOrUndefined(this.etCount) ? 0 : this.etCount.value;
+    const brC = isNullOrUndefined(this.brCount) ? 0 : this.brCount.value;
+    const idgC = isNullOrUndefined(this.idgCount) ? 0 : this.idgCount.value;
+    const edgC = isNullOrUndefined(this.edgCount) ? 0 : this.edgCount.value;
+
+
+    result = (it * itC) + (ia * iaC)
+    + (ot * otC) + (oa * oaC)
+    + (et * etC) + (br * brC)
+    + (idg * idgC) + (edg * edgC);
+
+    console.log(result);
 
     return result;
   }
