@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://localhost:44367/api/',
+  apiUrl: 'https://coedigitaldashboard.skytap-tss.vodafone.com/',
   applicationTypeAPIUrl: 'ApplicationTypes',
   attachmentTypeAPIUrl: 'AttachmentTypes',
   businessDomainAPIUrl: 'BusinessDomains',
@@ -18,14 +18,14 @@ export const environment = {
   monthsAPIUrl: 'Months',
   versiontypes: 'VersionTypes',
   userstoriesAPIUrl: 'UserStories',
-  attachmentsAPIUrl: 'https://localhost:44367/api/Attachments',
+  attachmentsAPIUrl: 'https://coedigitaldashboard.skytap-tss.vodafone.com/api/Attachments',
   attachmentAPIUrlTitle: 'Attachments',
   baselinesAPIUrl: 'Baselines',
   auth: {
-    clientID: 'du24sh2ssXFO5uNH6fAow1ylSPQAzmKD',
+    clientID: 'G63vMvSEF0ACMGUTJq1xZUZ2rSS7TS8c',
     domain: 'dev-jy4o22j5.eu.auth0.com',
-    audience: 'https://localhost:44367/',
-    redirect: 'http://localhost:4200/',
+    audience: 'https://coedigitaldashboard.skytap-tss.vodafone.com/',
+    redirect: 'https://digitalcoedashboard.skytap-tss.vodafone.com/',
     scope: ''
   }
 };
