@@ -70,18 +70,19 @@ export class EditProcessComponent implements OnInit {
           .getItem(params.proccessId)
           .then((result: IProcess) => {
             this.currentProcess = result;
+            console.log(result);
             // initializing the form.
             this.processName.setValue(this.currentProcess.processName);
             this.baseline.setValue(this.currentProcess.baseline.baselineProdFp);
             this.RPA_Type.setValue(this.currentProcess.fkRpaTypeId);
             this.targetSystem.setValue(this.currentProcess.targetSystemId);
             this.technology.setValue(this.currentProcess.technologyId);
-            this.applicationType.setValue(this.currentProcess.fKApplicationTypeId);
-            this.businessDomain.setValue(this.currentProcess.fKBusinessDomainId);
-            this.customer.setValue(this.currentProcess.fKCustomerId);
-            this.project.setValue(this.currentProcess.fKProjectId);
-            this.productivityAnalyst.setValue(this.currentProcess.fKProductivityAnalystId);
-            this.citrix.setValue(this.currentProcess.citrix);
+            this.applicationType.setValue(this.currentProcess.fkApplicationTypeId);
+            this.businessDomain.setValue(this.currentProcess.fkBusinessDomainId);
+            this.customer.setValue(this.currentProcess.fkCustomerId);
+            this.project.setValue(this.currentProcess.fkProjectId);
+            this.productivityAnalyst.setValue(this.currentProcess.fkProductivityAnalystId);
+            this.citrix.setValue(this.currentProcess.citrix || false);
 
           });
       });

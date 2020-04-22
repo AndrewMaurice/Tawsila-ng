@@ -17,7 +17,7 @@
         <div class="form-group col-4">
           <label for="customer">Customer</label>
           <select class="form-control" [formControl]="customer">
-            <option *ngFor="let item of customers" [value]="item.customerId">
+            <option *ngFor="let item of customers" [ngValue]="item.customerId">
               {{item.customerName}}
             </option>
           </select>
@@ -29,7 +29,7 @@
         <div class="form-group col-4">
           <label for="applicationType">Application Type</label>
           <select class="form-control" [formControl]="applicationType">
-            <option *ngFor="let item of applicationTypes" [value]="item.applicationTypeId">
+            <option *ngFor="let item of applicationTypes" [ngValue]="item.applicationTypeId">
               {{item.applicationTypeName}}
             </option>
           </select>
@@ -41,7 +41,7 @@
         <div class="form-group col-4">
           <label for="applicationType">business Domain</label>
           <select class="form-control" [formControl]="businessDomain">
-            <option *ngFor="let item of businessDomains" [value]="item.businessDomainId">
+            <option *ngFor="let item of businessDomains" [ngValue]="item.businessDomainId">
               {{item.businessDomainName}}
             </option>
           </select>
@@ -55,7 +55,7 @@
         <div class="form-group col-3">
           <label for="ProductivityAnalyst">Productivity Analyst</label>
           <select class="form-control" [formControl]="productivityAnalyst">
-            <option *ngFor="let item of productivityAnalysts" [value]="item.productivityAnalystId">
+            <option *ngFor="let item of productivityAnalysts" [ngValue]="item.productivityAnalystId">
               {{item.productivityAnalystName}}
             </option>
           </select>
@@ -113,7 +113,7 @@
         <div class="form-group col-4">
           <label for="baseline">Baseline</label>
           <select class="form-control" [formControl]="baseline">
-            <option *ngFor="let item of baselines" [value]="item.baseLineId">{{item.fiscalYear.fiscalYearName}}</option>
+            <option *ngFor="let item of baselines" [value]="item.baseLineId">{{item.baselineProdFp}}</option>
           </select>
           <div class="alert alert-danger" *ngIf="baseline.invalid && baseline.touched">
             <div *ngIf="baseline.errors.required">Please enter the baseline </div>
@@ -123,15 +123,15 @@
         <div class="form-group col-4">
           <label>Citrix</label>
           <select class="form-control" [formControl]="citrix">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
           </select>
           <div class="alert alert-danger" *ngIf="citrix.invalid && citrix.touched">
             <div *ngIf="citrix.errors.required">Please select the citrix usage</div>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary float-right" type="submit" [disabled]="(addNewProcessFormGroup.invalid && addNewProcessFormGroup.touched) || (!addNewProcessFormGroup.touched)">Add</button>
+      <button class="btn btn-primary float-right" type="submit" >Save Changes</button>
     </form>
   </div>
 </div>

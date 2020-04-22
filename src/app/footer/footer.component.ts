@@ -18,6 +18,7 @@ export class FooterComponent implements OnInit {
     this.auth.logout();
     this.cookiesService.deleteAll();
     window.location.reload;
+    this.auth.login();
   }
 
 }

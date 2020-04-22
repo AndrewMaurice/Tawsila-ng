@@ -127,7 +127,6 @@ export class AddProcessComponent implements OnInit, AfterContentInit {
       .getAllData()
       .then((result: IBaseline[]) => {
         this.baselines = result;
-        console.log(result);
       });
   }
 

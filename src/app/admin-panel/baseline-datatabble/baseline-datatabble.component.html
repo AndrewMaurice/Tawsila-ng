@@ -38,7 +38,7 @@
       <td mat-cell *matCellDef="let element" class="text-center">
         <input class="form-control"
         #baselineProdFp
-          (change)="updateItem(element.baselineId, baselineProdFp.value, element.marketAvgProdFp, element.targetProdFp, element.fiscalYearId)"
+          (change)="updateItem(element.baseLineId, baselineProdFp.value, element.marketAvgProdFp, element.targetProdFp, element.fiscalYearId)"
           [value]="element.baselineProdFp">
       </td>
     </ng-container>
@@ -48,7 +48,7 @@
       <td mat-cell *matCellDef="let element" class="text-center">
         <input class="form-control"
         #marketAvgProdFp
-          (change)="updateItem(element.baselineId, element.baselineProdFp, marketAvgProdFp.value, element.targetProdFp, element.fiscalYearId)"
+          (change)="updateItem(element.baseLineId, element.baselineProdFp, marketAvgProdFp.value, element.targetProdFp, element.fiscalYearId)"
           [value]="element.marketAvgProdFp">
       </td>
     </ng-container>
@@ -58,7 +58,7 @@
       <td mat-cell *matCellDef="let element" class="text-center">
         <input class="form-control"
         #targetProdFp
-          (change)="updateItem(element.baselineId, element.baselineProdFp,
+          (change)="updateItem(element.baseLineId, element.baselineProdFp,
           marketAvgProdFp.value, targetProdFp.value, element.fiscalYearId)"
           [value]="element.targetProdFp">
       </td>
@@ -69,7 +69,7 @@
       <td mat-cell *matCellDef="let element" class="text-center">
         <select class="form-control"
         #fiscalYear
-          (change)="updateItem(element.baselineId, element.baselineProdFp,
+          (change)="updateItem(element.baseLineId, element.baselineProdFp,
           marketAvgProdFp.value, targetProdFp.value, element.fiscalYearId)"
           [value]="element.targetProdFp">
           <option *ngFor="let item of fiscalYears" [value]="item.fiscalYearId">{{item.fiscalYearName}}</option>
@@ -81,7 +81,7 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> Delete </th>
       <td mat-cell *matCellDef="let element">
-        <button class="btn btn-danger" (click)="deleteItem(element.baselineId)">Delete</button>
+        <button class="btn btn-danger" (click)="deleteItem(element.baseLineId)">Delete</button>
       </td>
     </ng-container>
 

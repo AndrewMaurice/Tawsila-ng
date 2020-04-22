@@ -45,6 +45,7 @@ export class BaselineDatatabbleComponent implements OnInit {
     .then((result: IBaseline[]) => {
       this.dataSource = new MatTableDataSource(result);
       this.dataSource.paginator = this.paginator;
+
     });
   }
 

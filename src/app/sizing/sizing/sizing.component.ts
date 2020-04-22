@@ -5,7 +5,7 @@ import { TransactionTypesService } from 'src/app/admin-panel/services/transactio
 import { TransactionTypeValuesService } from 'src/app/admin-panel/services/transaction-type-values.service';
 import { IUserStory, ITransactionType, IVersion, ITransactionTypeValue } from 'src/models/api-interfaces';
 import { VersionsService } from '../services/versions.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { isNullOrUndefined } from 'util';
 import { errorheader, errorTimeOut, successAddMessage, sucessHeader, successTimeOut } from 'src/common/global-variables';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -54,7 +54,8 @@ export class SizingComponent implements OnInit, AfterViewInit {
               private transactionTypesValuesService: TransactionTypeValuesService,
               private versionService: VersionsService,
               private activatedRouter: ActivatedRoute,
-              private snackbar: MatSnackBar) { }
+              private snackbar: MatSnackBar,
+              private router: Router) { }
 
 
   ngOnInit() {
@@ -180,6 +181,7 @@ export class SizingComponent implements OnInit, AfterViewInit {
       .putItem(this.currentVersion.versionId, this.currentVersion)
       .then(() => {
         this.snackbar.open(successAddMessage, sucessHeader, {duration: successTimeOut});
+        this.router.navigate(['view-versions', this.currentVersion.versionId]);
       })
       .catch((err) => {
         this.snackbar.open(err.message, errorheader, {duration: errorTimeOut});
@@ -296,9 +298,12 @@ export class SizingComponent implements OnInit, AfterViewInit {
     + (et * etC) + (br * brC)
     + (idg * idgC) + (edg * edgC);
 
-    console.log(result);
 
     return result;
+  }
+
+  navigateToVersionDetails() {
+    this.router.navigate(['view-versions', this.currentVersion.versionId]);
   }
 
 

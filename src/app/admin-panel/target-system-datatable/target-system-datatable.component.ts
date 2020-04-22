@@ -9,6 +9,7 @@ import { successDeleteMessage, sucessHeader, successTimeOut,
 import { isNullOrUndefined } from 'util';
 import { TargetSystemsService } from '../services/target-systems.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-target-system-datatable',
@@ -120,6 +121,7 @@ export class TargetSystemDatatableComponent implements OnInit {
             .then((result: ITargetSystem[]) => {
               this.dataSource = new MatTableDataSource(result);
               this.dataSource.paginator = this.paginator;
+              console.log(result);
             });
 
           this.toastrService

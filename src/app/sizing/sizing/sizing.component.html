@@ -115,7 +115,10 @@
       </div>
     </div>
 
-    <button class="float-right btn btn-primary" type="submit">Add user story</button>
+    <div class="btn-group float-right" role="group" aria-label="Basic example">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <!-- <button type="button" class="btn btn-primary" (click)="navigateToVersionDetails()">Done</button> -->
+    </div>
   </form>
   <app-upload-attachment-bottom-sheet [versionId]="currentVersion?.versionId"></app-upload-attachment-bottom-sheet>
 </div>

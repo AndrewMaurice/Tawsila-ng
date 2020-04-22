@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { errorheader, errorTimeOut, successUpdateMessage, sucessHeader, successTimeOut } from 'src/common/global-variables';
 import { ValueTransformer } from '@angular/compiler/src/util';
 import { isNullOrUndefined } from 'util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-version-user-story-details',
@@ -54,7 +55,8 @@ export class VersionUserStoryDetailsComponent implements OnInit {
               private versionsServcie: VersionsService,
               private transactionTypesServcie: TransactionTypesService,
               private transactionTypesValuesServcie: TransactionTypeValuesService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private router: Router) {}
 
   ngOnInit() {
 
@@ -236,6 +238,7 @@ export class VersionUserStoryDetailsComponent implements OnInit {
         this.brCount.setValue(0);
         this.idgCount.setValue(0);
         this.edgCount.setValue(0);
+        this.router.navigate(['view-versions', this.currentVersion.versionId]);
       });
     });
   }
@@ -272,4 +275,8 @@ export class VersionUserStoryDetailsComponent implements OnInit {
     return result;
   }
 
+
+  navigateToVersionDetails() {
+    this.router.navigate(['view-versions', this.currentVersion.versionId]);
+  }
 }

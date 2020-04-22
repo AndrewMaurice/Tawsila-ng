@@ -47,6 +47,7 @@ export class ProjectDatatableComponent implements OnInit {
       .then((result: IProject[]) => {
         this.dataSource = new MatTableDataSource(result);
         this.dataSource.paginator = this.paginator;
+        console.log(result);
       });
 
     this.customersServcie

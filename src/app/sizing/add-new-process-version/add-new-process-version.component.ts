@@ -10,6 +10,7 @@ import { VersionTypesService } from '../services/version-types.service';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { errorheader, errorTimeOut, successAddMessage, sucessHeader, successTimeOut } from 'src/common/global-variables';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-add-new-process-version',
@@ -118,13 +119,15 @@ export class AddNewProcessVersionComponent implements OnInit {
       versionType: null
     };
 
+    console.log(version);
+
     this.versionsService
     .postItem(version)
     .then((result: IVersion) => {
       this.snackBar.open(successAddMessage, sucessHeader, {
         duration: successTimeOut
       });
-      // navigate to the sizing pag with the ID.
+      // navigate to the sizing page with the ID.
       this.router.navigate(['sizing', result.versionId]);
     })
     .catch(error => {

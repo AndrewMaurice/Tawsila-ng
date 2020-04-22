@@ -12,18 +12,18 @@
 
     <div class="form-group">
       <label>Delivery Line</label>
-      <select [formControl]="customer" class="form-control">
-        <option *ngFor="let item of rpaTypes" [value]="item.rpaTypeId">{{item.rpaTypeName}}</option>
+      <select [formControl]="rpaType" class="form-control">
+        <option *ngFor="let item of rpaTypes" [ngValue]="item.rpaTypeId">{{item.rpaTypeName}}</option>
       </select>
       <div class="alert alert-danger" *ngIf="rpaType.touched && rpaType.invalid">
-        <div *ngIf="rpaType.errors.required">The customer is required</div>
+        <div *ngIf="rpaType.errors.required">The Delivery Line is required</div>
       </div>
     </div>
 
     <div class="form-group">
       <label>Customer</label>
       <select [formControl]="customer" class="form-control">
-        <option *ngFor="let item of customers" [value]="item.customerId">{{item.customerName}}</option>
+        <option *ngFor="let item of customers" [ngValue]="item.customerId">{{item.customerName}}</option>
       </select>
       <div *ngIf="customer.invalid && customer.touched" class="alert alert-danger">
         <div *ngIf="customer.errors.required">The customer is required</div>
@@ -65,7 +65,7 @@
         <select [value]="element.customerId"
         (change)="update(update(element.projectId, element.projectName, element.rpaTypeId, customer.value))"
         class="form-control" #customer>
-          <option *ngFor="let item of rpaTypes" [value]="item.rpaTypeId">{{item.rpaTypeName}}</option>
+          <option *ngFor="let item of customers" [value]="item.customerId">{{item.customerName}}</option>
         </select>
       </td>
     </ng-container>
