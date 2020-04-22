@@ -70,7 +70,6 @@ export class EditProcessComponent implements OnInit {
           .getItem(params.proccessId)
           .then((result: IProcess) => {
             this.currentProcess = result;
-            console.log(result);
             // initializing the form.
             this.processName.setValue(this.currentProcess.processName);
             this.baseline.setValue(this.currentProcess.baseline.baselineProdFp);
@@ -193,20 +192,20 @@ export class EditProcessComponent implements OnInit {
       processId: this.currentProcess.processId,
       processName: this.processName.value,
       citrix: this.citrix.value === '1' ? true : false,
-      fKApplicationTypeId: this.applicationType.value,
-      fKapplicationType: null,
-      fKBusinessDomainId: this.businessDomain.value,
-      fKBusinessDomain: null,
-      fKCustomerId: this.customer.value,
-      fKcustomer: null,
-      fKProductivityAnalystId: this.productivityAnalyst.value,
-      fKproductivityAnalyst: null,
-      fKProjectId: this.project.value,
-      fKproject: null,
+      fkApplicationTypeId: this.applicationType.value,
+      fkapplicationType: null,
+      fkBusinessDomainId: this.businessDomain.value,
+      fkBusinessDomain: null,
+      fkCustomerId: this.customer.value,
+      fkcustomer: null,
+      fkProductivityAnalystId: this.productivityAnalyst.value,
+      fkproductivityAnalyst: null,
+      fkProjectId: this.project.value,
+      fkproject: null,
       technologyId: this.technology.value,
       technology: null,
       fkRpaTypeId: this.RPA_Type.value,
-      fKRpaType: null,
+      fkRpaType: null,
       targetSystemId: this.targetSystem.value,
       baselineId: this.baseline.value,
       baseline: null
