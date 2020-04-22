@@ -1,7 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ApplicationTypesService } from '../services/application-types.service';
 import { IApplicationType } from 'src/models/api-interfaces';
-import { ToastrService } from 'ngx-toastr';
 import {
   successDeleteMessage, sucessHeader, successTimeOut,
   errorheader, errorTimeOut, successUpdateMessage, successAddMessage
@@ -9,6 +8,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-application-type-datatable',
@@ -24,7 +24,7 @@ export class ApplicationTypeDatatableComponent implements OnInit {
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(private applicationTypesService: ApplicationTypesService,
-              private toastrService: ToastrService) { }
+              private toastrService: MatSnackBar) { }
 
   ngOnInit() {
     this.applicationTypesService
@@ -48,14 +48,14 @@ export class ApplicationTypeDatatableComponent implements OnInit {
 
         });
         this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successDeleteMessage, sucessHeader, {
+            duration: successTimeOut
           });
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
   }
@@ -64,8 +64,8 @@ export class ApplicationTypeDatatableComponent implements OnInit {
 
     if (!this.isValidInput(applicationTypeName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const updatedAppType: IApplicationType = {
@@ -84,14 +84,14 @@ export class ApplicationTypeDatatableComponent implements OnInit {
 
             });
           this.toastrService
-            .success(successUpdateMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successUpdateMessage, sucessHeader, {
+              duration: successTimeOut
             });
         })
         .catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }
@@ -102,8 +102,8 @@ export class ApplicationTypeDatatableComponent implements OnInit {
     const applicationTypeName = this.addNewApplicationTypeName.nativeElement.value;
     if (!this.isValidInput(applicationTypeName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const newAppType: IApplicationType = {
@@ -123,13 +123,13 @@ export class ApplicationTypeDatatableComponent implements OnInit {
             });
 
           this.toastrService
-            .success(successAddMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successAddMessage, sucessHeader, {
+              duration: successTimeOut
             });
         }).catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }

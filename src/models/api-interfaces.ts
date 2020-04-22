@@ -27,7 +27,7 @@ export interface IApplicationType {
 
 
 export interface IAttachmentType {
-  attachmentId: number;
+  attachmentTypeId: number;
   attachmentTypeName: string;
 }
 
@@ -144,5 +144,8 @@ export interface IProject {
   rpaType: IRPAType;
   rpaTypeId: number;
 }
+
+
+
 
 

@@ -8,6 +8,7 @@ import { successDeleteMessage, sucessHeader, successTimeOut,
   errorheader, errorTimeOut, successUpdateMessage, successAddMessage } from 'src/common/global-variables';
 import { isNullOrUndefined } from 'util';
 import { AttachmentTypesService } from '../services/attachment-types.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-attachment-type-datatable',
@@ -23,7 +24,7 @@ export class AttachmentTypeDatatableComponent implements OnInit {
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(private attachmentTypesService: AttachmentTypesService,
-              private toastrService: ToastrService) { }
+              private toastrService: MatSnackBar) { }
 
   ngOnInit() {
     this.attachmentTypesService
@@ -40,8 +41,8 @@ export class AttachmentTypeDatatableComponent implements OnInit {
       .then(() => {
 
         this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successDeleteMessage, sucessHeader, {
+            duration: successTimeOut
           });
 
           // refresh the list.
@@ -54,8 +55,8 @@ export class AttachmentTypeDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
   }
@@ -64,12 +65,12 @@ export class AttachmentTypeDatatableComponent implements OnInit {
 
     if (!this.isValidInput(attachmentTypeName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const updatedAppType: IAttachmentType = {
-        attachmentId: id,
+        attachmentTypeId: id,
         attachmentTypeName
       };
       this.attachmentTypesService
@@ -83,14 +84,14 @@ export class AttachmentTypeDatatableComponent implements OnInit {
               this.dataSource.paginator = this.paginator;
             });
           this.toastrService
-            .success(successUpdateMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successUpdateMessage, sucessHeader, {
+              duration: successTimeOut
             });
         })
         .catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }
@@ -101,12 +102,12 @@ export class AttachmentTypeDatatableComponent implements OnInit {
     const attachmentTypeName = this.addNewAttachmentTypeName.nativeElement.value;
     if (!this.isValidInput(attachmentTypeName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const newAppType: IAttachmentType = {
-        attachmentId: 0,
+        attachmentTypeId: 0,
         attachmentTypeName
       };
 
@@ -122,13 +123,13 @@ export class AttachmentTypeDatatableComponent implements OnInit {
             });
 
           this.toastrService
-            .success(successAddMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successAddMessage, sucessHeader, {
+              duration: successTimeOut
             });
         }).catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }

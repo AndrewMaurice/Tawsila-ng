@@ -8,6 +8,7 @@ import { successDeleteMessage, sucessHeader, successTimeOut,
   errorheader, errorTimeOut, successUpdateMessage, successAddMessage } from 'src/common/global-variables';
 import { isNullOrUndefined } from 'util';
 import { TargetSystemsService } from '../services/target-systems.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-target-system-datatable',
@@ -23,7 +24,7 @@ export class TargetSystemDatatableComponent implements OnInit {
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(private apiDataService: TargetSystemsService,
-              private toastrService: ToastrService) { }
+              private toastrService: MatSnackBar) { }
 
   ngOnInit() {
     this.apiDataService
@@ -40,8 +41,8 @@ export class TargetSystemDatatableComponent implements OnInit {
       .then(() => {
 
         this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successDeleteMessage, sucessHeader, {
+            duration: successTimeOut
           });
         this.apiDataService
             .getAllData()
@@ -52,8 +53,8 @@ export class TargetSystemDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
   }
@@ -63,8 +64,8 @@ export class TargetSystemDatatableComponent implements OnInit {
 
     if (!this.isValidInput(tagetSystemName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const updatedAppType: ITargetSystem = {
@@ -82,14 +83,14 @@ export class TargetSystemDatatableComponent implements OnInit {
               this.dataSource.paginator = this.paginator;
             });
           this.toastrService
-            .success(successUpdateMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successUpdateMessage, sucessHeader, {
+              duration: successTimeOut
             });
         })
         .catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }
@@ -101,8 +102,8 @@ export class TargetSystemDatatableComponent implements OnInit {
     const tagetSystemName = this.addNewItem.nativeElement.value;
     if (!this.isValidInput(tagetSystemName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const newAppType: ITargetSystem = {
@@ -122,13 +123,13 @@ export class TargetSystemDatatableComponent implements OnInit {
             });
 
           this.toastrService
-            .success(successAddMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successAddMessage, sucessHeader, {
+              duration: successTimeOut
             });
         }).catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }

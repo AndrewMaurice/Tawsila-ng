@@ -9,6 +9,7 @@ import { successDeleteMessage, sucessHeader, successTimeOut,
   errorheader, errorTimeOut, successAddMessage, successUpdateMessage } from 'src/common/global-variables';
 import { isNullOrUndefined } from 'util';
 import { FiscalYearsService } from '../services/fiscal-years.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fiscal-years-datatable',
@@ -37,7 +38,7 @@ export class FiscalYearsDatatableComponent implements OnInit {
 
 
   constructor(private apiDataService: FiscalYearsService,
-              private toastrService: ToastrService) { }
+              private toastrService: MatSnackBar) { }
 
   ngOnInit() {
     this.apiDataService
@@ -56,8 +57,8 @@ export class FiscalYearsDatatableComponent implements OnInit {
       .then(() => {
 
         this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successDeleteMessage, sucessHeader, {
+            duration: successTimeOut
           });
           // refresh the list.
         this.apiDataService
@@ -69,8 +70,8 @@ export class FiscalYearsDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
   }
@@ -78,8 +79,8 @@ export class FiscalYearsDatatableComponent implements OnInit {
   update(id: number, fiscalYearName: string, startDate: string) {
     if (isNullOrUndefined(fiscalYearName) || isNullOrUndefined(startDate)) {
       this.toastrService
-      .error('All the fields are required', errorheader, {
-        timeOut: errorTimeOut
+      .open('All the fields are required', errorheader, {
+        duration: errorTimeOut
       });
     } else {
       const yearToBeUpdated: IFiscalYear = {
@@ -93,14 +94,14 @@ export class FiscalYearsDatatableComponent implements OnInit {
       .putItem(id, yearToBeUpdated)
       .then(() => {
         this.toastrService
-        .success(successUpdateMessage, sucessHeader, {
-          timeOut: successTimeOut
+        .open(successUpdateMessage, sucessHeader, {
+          duration: successTimeOut
         });
       })
       .catch(error => {
         this.toastrService
-        .error(error.message, errorheader, {
-          timeOut: errorTimeOut
+        .open(error.message, errorheader, {
+          duration: errorTimeOut
         });
       });
     }
@@ -119,8 +120,8 @@ export class FiscalYearsDatatableComponent implements OnInit {
     .postItem(itemToBeAdded)
     .then(() => {
       this.toastrService
-      .success(successAddMessage, sucessHeader, {
-        timeOut: successTimeOut
+      .open(successAddMessage, sucessHeader, {
+        duration: successTimeOut
       });
 
       this.apiDataService
@@ -132,8 +133,8 @@ export class FiscalYearsDatatableComponent implements OnInit {
     })
     .catch(error => {
       this.toastrService
-      .error(error.message, errorheader, {
-        timeOut: errorTimeOut
+      .open(error.message, errorheader, {
+        duration: errorTimeOut
       });
     });
   }

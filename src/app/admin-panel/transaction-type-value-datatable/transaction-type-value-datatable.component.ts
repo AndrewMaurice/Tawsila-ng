@@ -11,6 +11,7 @@ import {
 import { isNullOrUndefined } from 'util';
 import { TransactionTypeValuesService } from '../services/transaction-type-values.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-transaction-type-value-datatable',
@@ -40,7 +41,7 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
 
   constructor(private apiDataService: TransactionTypeValuesService,
               private transactionTypesService: TransactionTypesService,
-              private toastrService: ToastrService) { }
+              private toastrService: MatSnackBar) { }
 
   ngOnInit() {
     this.apiDataService
@@ -63,8 +64,8 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       .then(() => {
 
         this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successDeleteMessage, sucessHeader, {
+            duration: successTimeOut
           });
         this.apiDataService
       .getAllData()
@@ -75,8 +76,8 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
   }
@@ -93,8 +94,8 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       .putItem(id, newObjectToBeAdded)
       .then(() => {
         this.toastrService
-          .success(successAddMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successAddMessage, sucessHeader, {
+            duration: successTimeOut
           });
 
         this.apiDataService
@@ -106,8 +107,8 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
 
@@ -126,8 +127,8 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       .postItem(newObjectToBeAdded)
       .then(() => {
         this.toastrService
-          .success(successAddMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successAddMessage, sucessHeader, {
+            duration: successTimeOut
           });
 
         this.apiDataService
@@ -139,8 +140,8 @@ export class TransactionTypeValueDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
 

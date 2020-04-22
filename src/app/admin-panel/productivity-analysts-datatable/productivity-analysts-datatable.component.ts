@@ -8,6 +8,7 @@ import { successDeleteMessage, sucessHeader, successTimeOut,
   errorheader, errorTimeOut, successUpdateMessage, successAddMessage } from 'src/common/global-variables';
 import { isNullOrUndefined } from 'util';
 import { ProductivityAnalystsService } from '../services/productivity-analysts.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-productivity-analysts-datatable',
@@ -23,7 +24,7 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
   constructor(private apiDataService: ProductivityAnalystsService,
-              private toastrService: ToastrService) { }
+              private toastrService: MatSnackBar) { }
 
   ngOnInit() {
     this.apiDataService
@@ -40,8 +41,8 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
       .then(() => {
 
         this.toastrService
-          .success(successDeleteMessage, sucessHeader, {
-            timeOut: successTimeOut
+          .open(successDeleteMessage, sucessHeader, {
+            duration: successTimeOut
           });
         this.apiDataService
             .getAllData()
@@ -52,8 +53,8 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
       })
       .catch(error => {
         this.toastrService
-          .error(error.message, errorheader, {
-            timeOut: errorTimeOut
+          .open(error.message, errorheader, {
+            duration: errorTimeOut
           });
       });
   }
@@ -62,8 +63,8 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
 
     if (!this.isValidInput(productivityAnalystName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const updatedAppType: IProductivityAnalyst = {
@@ -81,14 +82,14 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
               this.dataSource.paginator = this.paginator;
             });
           this.toastrService
-            .success(successUpdateMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successUpdateMessage, sucessHeader, {
+              duration: successTimeOut
             });
         })
         .catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }
@@ -99,8 +100,8 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
     const productivityAnalystName = this.addNewItem.nativeElement.value;
     if (!this.isValidInput(productivityAnalystName)) {
       this.toastrService
-        .error('Cannot add an empty name', errorheader, {
-          timeOut: errorTimeOut
+        .open('Cannot add an empty name', errorheader, {
+          duration: errorTimeOut
         });
     } else {
       const newAppType: IProductivityAnalyst = {
@@ -120,13 +121,13 @@ export class ProductivityAnalystsDatatableComponent implements OnInit {
             });
 
           this.toastrService
-            .success(successAddMessage, sucessHeader, {
-              timeOut: successTimeOut
+            .open(successAddMessage, sucessHeader, {
+              duration: successTimeOut
             });
         }).catch(error => {
           this.toastrService
-            .error(error.message, errorheader, {
-              timeOut: errorTimeOut
+            .open(error.message, errorheader, {
+              duration: errorTimeOut
             });
         });
     }

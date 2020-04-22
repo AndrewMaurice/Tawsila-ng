@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://coedigitaldashboard.skytap-tss.vodafone.com/',
+  apiUrl: 'https://coedigitaldashboard.skytap-tss.vodafone.com/api/',
   applicationTypeAPIUrl: 'ApplicationTypes',
   attachmentTypeAPIUrl: 'AttachmentTypes',
   businessDomainAPIUrl: 'BusinessDomains',

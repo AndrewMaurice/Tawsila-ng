@@ -7,11 +7,19 @@ export class HttpService {
   constructor(private url: string, private http: HttpClient) { }
 
   getAllData() {
-    return this.http.get(this.serverPart + this.url).toPromise();
+    return this.http.get(this.serverPart + this.url, {
+      headers: {
+        'Access-Control-Allow-Origin' : '*'
+      }
+    }).toPromise();
   }
 
   getItem(id: number) {
-    return this.http.get(this.serverPart + this.url + '/' + id).toPromise();
+    return this.http.get(this.serverPart + this.url + '/' + id, {
+      headers: {
+        'Access-Control-Allow-Origin' : '*'
+      }
+    }).toPromise();
   }
 
   postItem(item: any) {
