@@ -23,12 +23,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-
-            ],
-            "scripts": [
-
-            ]
+            "styles": [],
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -122,6 +118,10 @@
               "devServerTarget": "rpa-automation-tool:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
