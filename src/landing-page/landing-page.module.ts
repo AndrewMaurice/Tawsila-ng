@@ -1,6 +1,8 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { routes } from './landing-page.router';
 
 
 
@@ -8,7 +10,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
   declarations: [LandingPageComponent],
   exports: [LandingPageComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class LandingPageModule { }
