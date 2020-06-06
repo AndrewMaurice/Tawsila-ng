@@ -11,6 +11,10 @@ import { appRoutes } from './app.routes';
 import { LandingPageArComponent } from './landing-page/landing-page-ar/landing-page-ar.component';
 import { RegistrationPageArComponent } from './registration-page-ar/registration-page-ar.component';
 import { LoginArComponent } from './login-ar/login-ar.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import { LoginArComponent } from './login-ar/login-ar.component';
     BrowserModule,
     BrowserAnimationsModule,
     LandingPageModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [
   ],

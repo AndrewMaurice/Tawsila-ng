@@ -12,5 +12,6 @@ export  const appRoutes: Routes = [
   {path: 'ar/login', component: LoginArComponent},
   {path: 'ar/registration', component: RegistrationPageArComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'registration', component: RegistrationPageComponent}
+  {path: 'registration', component: RegistrationPageComponent},
+  {path: 'ar/login/ar', redirectTo: 'ar'}
 ];
