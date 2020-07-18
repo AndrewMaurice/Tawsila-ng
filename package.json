@@ -31,7 +31,8 @@
     "zone.js": "~0.9.1",
     "typescript": "~3.5.3",
     "@angular/cli": "~8.3.2",
-    "@angular/compiler-cli": "~8.2.4"
+    "@angular/compiler-cli": "~8.2.4",
+    "express": "^4.16.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.2",
