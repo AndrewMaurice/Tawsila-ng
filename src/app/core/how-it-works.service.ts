@@ -22,7 +22,7 @@ export class HowItWorksService {
       no5Desc: 'we would appreciate you giving us a short review of your trip. We love to hear positive reviews and also reviews of what we could do better next time!',
       no5Title: '5- After the ride is over',
       no6Title: '6- Enjoy your day',
-      no6Desc: 'and remember Tawsila is only a click away!'
+      no6Desc: 'and remember Tawselah is only a click away!'
     };
     return obj;
   }
@@ -41,7 +41,7 @@ export class HowItWorksService {
       no5Desc: 'نقدر لك تقديم استعراض قصير لرحلتك.  نحن نحب أن نسمع تعليقات إيجابية وأيضًا مراجعات حول ما يمكننا القيام به بشكل أفضل في المرة القادمة!',
       no5Title: ' 5. بعد انتهاء الرحلة',
       no6Title: '6. استمتع بيومك',
-      no6Desc: 'وتذكر Tawsila على بعد نقرة واحدة!'
+      no6Desc: 'وتذكر Tawselah على بعد نقرة واحدة!'
     };
 
     return obj;
