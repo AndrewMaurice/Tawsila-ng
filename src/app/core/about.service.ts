@@ -15,7 +15,7 @@ export class AboutService {
       whyChooseTawsileDesc: 'We are a single or ride-sharing business that is here to make your commute as simple as it can be. Simply open your app, enter your destination and our drivers will do the rest! We have unbeatable prices for our single riders that no company around could even compare to; and if you choose to share your ride with others in your community the price goes down even more! Safety is a top priority here at Tawselah; all of our drivers have a clean driving record and our fully insured to ensure you arrive at your destination as safely and comfortably as possible. Just sit back and relax on your ride as we are committed to providing the best service for you and the rest of our community!',
       // tslint:disable-next-line: max-line-length
       aboutTawsilaDesc: 'We are a new company that is offering the safest, most reliable ride you can get. Any destination is at your fingertips when you choose Tawselah, and as always, we are only one click away!',
-      aboutTawsilaHeader: 'About Tawsila',
+      aboutTawsilaHeader: 'About Tawselah',
       // tslint:disable-next-line: max-line-length
       missionDesc: 'To give the community a more affordable way to get to their destinations with safe and reliable drivers. Our easy to use website was designed with our customers in mind, to make your trip as simple as a click away! We are continually changing and adapting our business to meet the needs of the communities we serve! We always love to hear feedback from our riders to know how we could make your experience here at Tawselah even better!',
       missionHeader: 'Our Mission',
