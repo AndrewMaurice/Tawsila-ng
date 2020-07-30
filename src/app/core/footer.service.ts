@@ -13,7 +13,7 @@ export class FooterService {
       point1: 'Fast',
       point2: 'Reliable',
       point3: 'Economic',
-      copyRights: 'Tawselah 2020. All Rights Reserved'
+      copyRights: 'Tawsila 2020. All Rights Reserved'
     };
 
     return obj;
@@ -24,7 +24,7 @@ export class FooterService {
       point1: 'سريع',
       point2: 'يعتمد عليه',
       point3: 'اقتصادي',
-      copyRights: 'Tawselah 2020. جميع الحقوق محفوظة'
+      copyRights: 'Tawsila 2020. جميع الحقوق محفوظة'
     };
 
     return obj;

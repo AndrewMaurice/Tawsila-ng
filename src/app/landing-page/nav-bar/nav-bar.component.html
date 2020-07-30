@@ -1,14 +1,14 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top" *ngIf="isEnglish">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['']">Tawselah</a>
+    <a class="navbar-brand" [routerLink]="['']">Tawsila</a>
     <a class="btn btn-link" (click)="onLanClick()">العربية</a>
   </div>
 </nav>
 
 <nav class="navbar navbar-light bg-light static-top" style="direction: rtl;" *ngIf="!isEnglish">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['']">Tawselah</a>
+    <a class="navbar-brand" [routerLink]="['']">Tawsila</a>
     <a class="btn btn-link" (click)="onLanClick()">English</a>
   </div>
 </nav>
